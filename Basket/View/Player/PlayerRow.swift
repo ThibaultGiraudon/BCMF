@@ -1,5 +1,5 @@
 //
-//  BasketRow.swift
+//  PlayerRow.swift
 //  Basket
 //
 //  Created by Thibault Giraudon on 27/02/2023.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct BasketRow: View {
+struct PlayerRow: View {
     var basket: Basket
     
     var body: some View {
@@ -22,11 +22,11 @@ struct BasketRow: View {
     }
 }
 
-struct BasketRow_Previews: PreviewProvider {
+struct PlayerRow_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            BasketRow(basket: basket[6])
-            BasketRow(basket: basket[7])
+            PlayerRow(basket: basket[6])
+            PlayerRow(basket: basket[7])
         }
             .previewLayout(.fixed(width: 300, height: 70))
     }

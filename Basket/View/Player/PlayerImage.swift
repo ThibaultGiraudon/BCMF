@@ -1,5 +1,5 @@
 //
-//  CircleImage.swift
+//  PlayerImage.swift
 //  Basket
 //
 //  Created by Thibault Giraudon on 27/02/2023.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CircleImage: View {
+struct PlayerImage: View {
     var image: Image
     var body: some View {
         image
@@ -21,8 +21,8 @@ struct CircleImage: View {
     }
 }
 
-struct CircleImage_Previews: PreviewProvider {
+struct PlayerImage_Previews: PreviewProvider {
     static var previews: some View {
-        CircleImage(image: Image("Emma_Gailhot"))
+        PlayerImage(image: Image("Emma_Gailhot"))
     }
 }

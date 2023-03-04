@@ -1,0 +1,80 @@
+[
+    {
+        "name": "US BEAUMONT - 2",
+        "pts": "2",
+        "play": "2",
+        "win": "0",
+        "loose": "2",
+        "null": "0",
+        "scored": "109",
+        "taken": "133",
+        "diff": "-24",
+        "rank": "5",
+        "id": 10005
+    },
+    {
+        "name": "MONTBRISON FEMININE BC - 2",
+        "pts": "4",
+        "play": "2",
+        "win": "2",
+        "loose": "0",
+        "null": "0",
+        "scored": "207",
+        "taken": "97",
+        "diff": "110",
+        "rank": "1",
+        "id": 10001
+    },
+    {
+        "name": "IE - FRAISSES-UNIEUX BASKET 42 - 2",
+        "pts": "4",
+        "play": "2",
+        "win": "2",
+        "loose": "0",
+        "null": "0",
+        "scored": "121",
+        "taken": "84",
+        "diff": "37",
+        "rank": "2",
+        "id": 10002
+    },
+    {
+        "name": "CLERMONT BASKET - 2",
+        "pts": "3",
+        "play": "2",
+        "win": "1",
+        "loose": "1",
+        "null": "0",
+        "scored": "112",
+        "taken": "117",
+        "diff": "-5",
+        "rank": "3",
+        "id": 10003
+    },
+    {
+        "name": "AL AUBIERE - 1",
+        "pts": "3",
+        "play": "2",
+        "win": "1",
+        "loose": "1",
+        "null": "0",
+        "scored": "108",
+        "taken": "112",
+        "diff": "-4",
+        "rank": "4",
+        "id": 10004
+    },
+    {
+        "name": "AL PERIGNAT - 1",
+        "pts": "2",
+        "play": "2",
+        "win": "0",
+        "loose": "2",
+        "null": "0",
+        "scored": "72",
+        "taken": "186",
+        "diff": "-114",
+        "rank": "6",
+        "id": 10006
+    }
+]

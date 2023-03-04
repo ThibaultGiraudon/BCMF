@@ -11,6 +11,7 @@ import SwiftUI
 struct Basket: Hashable, Codable, Identifiable {
     var id: Int
     var name: String
+    var total_scored: String
     var post: String
     var weight: String
     var description: String

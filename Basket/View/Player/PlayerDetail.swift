@@ -1,5 +1,5 @@
 //
-//  BasketDetail.swift
+//  PlayerDetail.swift
 //  Basket
 //
 //  Created by Thibault Giraudon on 27/02/2023.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct BasketDetail: View {
+struct PlayerDetail: View {
     var basket: Basket
     
     var body: some View {
@@ -17,14 +17,14 @@ struct BasketDetail: View {
                     .ignoresSafeArea(edges: .top)
                     .frame(height: 300)
                 
-                CircleImage(image: basket.image)
+                PlayerImage(image: basket.image)
                     .offset(y: -130)
                     .padding(.bottom, -130)
                 
                 VStack(alignment: .leading) {
                     Text(basket.name)
                         .font(.title)
-                    
+                    Text(basket.total_scored)
                     HStack {
                         Text(basket.post)
                         Spacer()
@@ -32,23 +32,24 @@ struct BasketDetail: View {
                     }
                     .font(.subheadline)
                     .foregroundColor(.secondary)
-                    
-                    Divider()
-                    
-                    Text("About \(basket.name)")
-                        .font(.title2)
-                    Text(basket.description)
+//                    
+//                    Divider()
+//                    
+//                    Text("About \(basket.name)")
+//                        .font(.title2)
+//                    Text(basket.description)
                 }
                 .padding()
             }
             .navigationTitle(basket.name)
             .navigationBarTitleDisplayMode(.inline)
+            .ignoresSafeArea()
         }
     }
 }
 
-struct BasketDetail_Previews: PreviewProvider {
+struct PlayerDetail_Previews: PreviewProvider {
     static var previews: some View {
-        BasketDetail(basket: basket[7])
+        PlayerDetail(basket: basket[7])
     }
 }

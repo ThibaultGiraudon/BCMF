@@ -1,7 +1,9 @@
 [
     {
+        "pts": "4",
         "name": "Maelle GOURBIERE",
         "weight": "unknow",
+        "total_scored": "Blessée",
         "id": 1001,
         "isFeatured": true,
         "isFavorite": true,
@@ -10,8 +12,10 @@
         "imageName": "Maelle_Gourbiere"
     },
     {
+        "pts": "4",
         "name": "Lena POYET",
         "weight": "unknow",
+        "total_scored": "9 pts au total sur la saison en 2 matchs",
         "id": 1002,
         "isFeatured": true,
         "isFavorite": true,
@@ -20,8 +24,10 @@
         "imageName": "Lena_Poyet"
     },
     {
+        "pts": "4",
         "name": "Margaux SOLLE",
         "weight": "unknow",
+        "total_scored": "33 pts au total sur la saison en 2 matchs",
         "id": 1003,
         "isFeatured": true,
         "isFavorite": true,
@@ -30,8 +36,10 @@
         "imageName": "Margaux_Solle"
     },
     {
+        "pts": "4",
         "name": "Candice CHAMBRON",
         "weight": "unknow",
+        "total_scored": "19 pts au total sur la saison en 1 matchs",
         "id": 1004,
         "isFeatured": true,
         "isFavorite": true,
@@ -40,8 +48,10 @@
         "imageName": "Candice_Chambron"
     },
     {
+        "pts": "4",
         "name": "Camille FOURRE",
         "weight": "unknow",
+        "total_scored": "20 pts au total sur la saison en 2 matchs",
         "id": 1005,
         "isFeatured": true,
         "isFavorite": true,
@@ -50,8 +60,10 @@
         "imageName": "Camille_Fourre"
     },
     {
+        "pts": "4",
         "name": "Sybille EYRAUD",
         "weight": "unknow",
+        "total_scored": "6 pts au total sur la saison en 2 matchs",
         "id": 1006,
         "isFeatured": true,
         "isFavorite": true,
@@ -60,8 +72,10 @@
         "imageName": "Sybille_Eyraud"
     },
     {
+        "pts": "4",
         "name": "Amandine VIAL",
-        "weight": "unknow",
+        "weight": "1m20",
+        "total_scored": "16 pts au total sur la saison en 2 matchs",
         "id": 1007,
         "isFeatured": true,
         "isFavorite": true,
@@ -70,8 +84,10 @@
         "imageName": "Amandine_Vial"
     },
     {
+        "pts": "4",
         "name": "Emma GAILHOT",
         "weight": "1m77",
+        "total_scored": "36 pts au total sur la saison en 2 matchs",
         "id": 1008,
         "isFeatured": true,
         "isFavorite": true,
@@ -80,8 +96,10 @@
         "imageName": "Emma_Gailhot"
     },
     {
+        "pts": "4",
         "name": "Mathilde ARCHER",
         "weight": "unknow",
+        "total_scored": "5 pts au total sur la saison en 2 matchs",
         "id": 1009,
         "isFeatured": true,
         "isFavorite": true,
@@ -90,8 +108,10 @@
         "imageName": "Mathilde_Archer"
     },
     {
+        "pts": "4",
         "name": "Laurine LAVAL",
         "weight": "unknow",
+        "total_scored": "Blessée",
         "id": 1010,
         "isFeatured": true,
         "isFavorite": true,
@@ -100,8 +120,10 @@
         "imageName": "Laurine_Laval"
     },
     {
+        "pts": "4",
         "name": "Aurelia CABATON",
         "weight": "unknow",
+        "total_scored": "46 pts au total sur la saison en 2 matchs",
         "id": 1011,
         "isFeatured": true,
         "isFavorite": true,
