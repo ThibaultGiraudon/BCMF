@@ -30,14 +30,12 @@ struct Tabs: View {
                             }, label: {
                                 VStack(spacing: 0) {
                                     HStack {
-                                        // Text
                                         Text(tabs[row].title)
                                             .font(Font.system(size: 18, weight: .semibold))
                                             .foregroundColor(.green)
                                             .padding(EdgeInsets(top: 10, leading: 3, bottom: 10, trailing: 15))
                                     }
                                     .frame(width: fixed ? (geoWidth / CGFloat(tabs.count)) : .none, height: 52)
-//                                     Bar Indicator
                                     Rectangle().fill(selectedTab == row ? Color.white : Color.clear)
                                         .frame(height: 3)
                                 }.fixedSize()

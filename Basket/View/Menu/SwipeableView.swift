@@ -30,10 +30,7 @@ struct SwipeableView: View {
         NavigationView {
             GeometryReader { geo in
                 VStack(spacing: 0) {
-                    // Tabs
                     Tabs(tabs: tabs, geoWidth: geo.size.width, selectedTab: $selectedTab)
-
-                    // Views
                     TabView(selection: $selectedTab,
                             content: {
 
@@ -46,7 +43,6 @@ struct SwipeableView: View {
                             })
                             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 }
-//                .foregroundColor(Color.green)
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationTitle("BCMF")
                 .ignoresSafeArea()

@@ -9,9 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        BirdView()
-//        SwipeableView()
-//            .preferredColorScheme(.light)
+        SwipeableView()
+            .preferredColorScheme(.light)
     }
 }
 

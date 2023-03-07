@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct Club: Hashable, Codable, Identifiable {
-    var id: Int
+    var id: String = UUID().uuidString
     var name: String
     var pts: String
     var play: String

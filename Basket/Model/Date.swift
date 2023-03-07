@@ -8,11 +8,11 @@
 import Foundation
 import SwiftUI
 
-struct Date: Hashable, Codable, Identifiable {
-    var id: Int
-    var team1: String
-    var team2: String
+struct Planning: Hashable, Codable, Identifiable {
+    var id: String = UUID().uuidString
     var date: String
     var hour: String
+    var team1: String
+    var team2: String
     var result: String
 }

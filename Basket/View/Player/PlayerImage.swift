@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct PlayerImage: View {
-    var image: Image
+    var url: String
     var body: some View {
-        image
+        Image(url)
             .resizable()
             .frame(width: 271, height: 384)
             .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
@@ -23,6 +23,6 @@ struct PlayerImage: View {
 
 struct PlayerImage_Previews: PreviewProvider {
     static var previews: some View {
-        PlayerImage(image: Image("Emma_Gailhot"))
+        PlayerImage(url: "Emma_Gailhot")
     }
 }

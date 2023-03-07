@@ -9,29 +9,41 @@ import SwiftUI
 import EventKit
 
 struct CalendarView: View {
-    
+    @ObservedObject private var viewModel = ViewModel()
     var body: some View {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            VStack {
-                CalendarTitle()
-                Divider()
-                ForEach(date) { date in
-                    CalendarRow(date: date)
-                    Divider()
+        VStack {
+            CalendarTitle()
+            Divider()
+            ForEach(viewModel.plannings) { planning in
+                HStack{
+                    Text(planning.date)
+                        .multilineTextAlignment(.leading)
+                        .frame(width: UIScreen.main.bounds.height * (0.04))
+                        .font(.system(size: 7))
+                    Text(planning.hour)
+                        .multilineTextAlignment(.leading)
+                        .frame(width: UIScreen.main.bounds.height * (0.04))
+                        .font(.system(size: 7))
+                    Text(planning.team1)
+                        .multilineTextAlignment(.leading)
+                        .frame(width: UIScreen.main.bounds.height * (0.15))
+                        .font(.system(size: 7))
+                    Text(planning.team2)
+                        .multilineTextAlignment(.leading)
+                        .frame(width: UIScreen.main.bounds.height * (0.15))
+                        .font(.system(size: 7))
+                    Text(planning.result)
+
+                        .multilineTextAlignment(.leading)
+                        .frame(width: UIScreen.main.bounds.height * (0.05))
+                        .font(.system(size: 7))
                 }
+                Divider()
             }
+
         }
-        else {
-            Table(date) {
-                TableColumn("Date", value: \.date)
-                    .width(UIScreen.main.bounds.height * (0.1))
-                TableColumn("Heure", value: \.hour)
-                    .width(UIScreen.main.bounds.height * (0.05))
-                TableColumn("Domicile", value: \.team1)
-                TableColumn("Visiteur", value: \.team2)
-                TableColumn("Resultat", value: \.result)
-                    .width(UIScreen.main.bounds.height * (0.07))
-            }
+        .onAppear() {
+            self.viewModel.fetchData()
         }
     }
 }
