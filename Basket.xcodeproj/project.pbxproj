@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CE4A40DE29B61E79009E2C70 /* clubViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4A40DD29B61E79009E2C70 /* clubViewModel.swift */; };
+		CE4A40DE29B61E79009E2C70 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4A40DD29B61E79009E2C70 /* ViewModel.swift */; };
 		CE4A40E129B61EE7009E2C70 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CE4A40E029B61EE7009E2C70 /* FirebaseFirestore */; };
 		CE4A40E329B61EE7009E2C70 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CE4A40E229B61EE7009E2C70 /* FirebaseFirestoreSwift */; };
 		CE4A40E529B621B2009E2C70 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE4A40E429B621B2009E2C70 /* GoogleService-Info.plist */; };
@@ -29,7 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		CE4A40DD29B61E79009E2C70 /* clubViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = clubViewModel.swift; sourceTree = "<group>"; };
+		CE4A40DD29B61E79009E2C70 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		CE4A40E429B621B2009E2C70 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CEAE66FA29ACA5B1001C4BFF /* Basket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Basket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEAE66FD29ACA5B1001C4BFF /* BasketApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketApp.swift; sourceTree = "<group>"; };
@@ -117,7 +117,7 @@
 				CEAE670D29ACB329001C4BFF /* Player.swift */,
 				CEAE672029ACE210001C4BFF /* Club.swift */,
 				CEAE673129AE4BCA001C4BFF /* Date.swift */,
-				CE4A40DD29B61E79009E2C70 /* clubViewModel.swift */,
+				CE4A40DD29B61E79009E2C70 /* ViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -243,7 +243,7 @@
 				CEAE670E29ACB329001C4BFF /* Player.swift in Sources */,
 				CEBD6B1D29B11FBF00120448 /* Tab.swift in Sources */,
 				CEAE671929ACB93C001C4BFF /* PalyerList.swift in Sources */,
-				CE4A40DE29B61E79009E2C70 /* clubViewModel.swift in Sources */,
+				CE4A40DE29B61E79009E2C70 /* ViewModel.swift in Sources */,
 				CEAE66FE29ACA5B1001C4BFF /* BasketApp.swift in Sources */,
 				CEAE672129ACE210001C4BFF /* Club.swift in Sources */,
 				CEBD6B2129B2219E00120448 /* RankTitle.swift in Sources */,

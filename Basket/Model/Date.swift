@@ -6,13 +6,23 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
 import SwiftUI
 
 struct Planning: Hashable, Codable, Identifiable {
-    var id: String = UUID().uuidString
+    @DocumentID var id: String?
     var date: String
     var hour: String
     var team1: String
     var team2: String
     var result: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case date
+        case hour
+        case team1
+        case team2
+        case result
+    }
 }

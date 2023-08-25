@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
 import SwiftUI
 
 struct Club: Hashable, Codable, Identifiable {
-    var id: String = UUID().uuidString
+    @DocumentID var id: String?
     var name: String
     var pts: String
     var play: String
@@ -20,4 +21,18 @@ struct Club: Hashable, Codable, Identifiable {
     var taken: String
     var diff: String
     var rank: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case pts
+        case play
+        case win
+        case loose
+        case null
+        case scored
+        case taken
+        case diff
+        case rank
+    }
 }

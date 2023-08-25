@@ -6,14 +6,25 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
 import SwiftUI
 
 struct Player: Hashable, Codable, Identifiable {
-    var id: String = UUID().uuidString
+    @DocumentID var id: String?
     var name: String
     var size: String
     var total: String
     var imageURL: String
     var post: String
     var description: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case size
+        case total
+        case imageURL
+        case post
+        case description
+    }
 }
