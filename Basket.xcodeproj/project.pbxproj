@@ -167,12 +167,8 @@
 			isa = PBXGroup;
 			children = (
 				CE67D6152A9D21BD00F024EF /* PlayerModel */,
-				CEAE672029ACE210001C4BFF /* Club.swift */,
-				CEAE673129AE4BCA001C4BFF /* Date.swift */,
-				CE4A40DD29B61E79009E2C70 /* RankingViewModel.swift */,
-				CEAC87362A98F75900F7BBE3 /* PlanningViewModel.swift */,
-				CE7B4A112A9A579900562DAA /* RankingsViewModel.swift */,
-				CE7B4A152A9A658B00562DAA /* PlanningsViewModel.swift */,
+				CEF5671A2AAF5247005D4ABC /* RankingModel */,
+				CEF5671B2AAF5260005D4ABC /* PlanningModel */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -219,6 +215,26 @@
 				CE7B4A192A9A693800562DAA /* PlanningRowView.swift */,
 			);
 			path = Calendar;
+			sourceTree = "<group>";
+		};
+		CEF5671A2AAF5247005D4ABC /* RankingModel */ = {
+			isa = PBXGroup;
+			children = (
+				CEAE672029ACE210001C4BFF /* Club.swift */,
+				CE4A40DD29B61E79009E2C70 /* RankingViewModel.swift */,
+				CE7B4A112A9A579900562DAA /* RankingsViewModel.swift */,
+			);
+			path = RankingModel;
+			sourceTree = "<group>";
+		};
+		CEF5671B2AAF5260005D4ABC /* PlanningModel */ = {
+			isa = PBXGroup;
+			children = (
+				CEAE673129AE4BCA001C4BFF /* Date.swift */,
+				CEAC87362A98F75900F7BBE3 /* PlanningViewModel.swift */,
+				CE7B4A152A9A658B00562DAA /* PlanningsViewModel.swift */,
+			);
+			path = PlanningModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
