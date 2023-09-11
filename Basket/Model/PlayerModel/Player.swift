@@ -12,6 +12,7 @@ import SwiftUI
 struct Player: Hashable, Codable, Identifiable {
     @DocumentID var id: String?
     var name: String
+    var number: Int
     var size: String
     var total: String
     var imageURL: String
@@ -21,6 +22,7 @@ struct Player: Hashable, Codable, Identifiable {
     enum CodingKeys: String, CodingKey {
         case id
         case name
+        case number
         case size
         case total
         case imageURL

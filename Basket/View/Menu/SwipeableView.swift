@@ -38,7 +38,7 @@ struct SwipeableView: View {
                                     .tag(0)
                                 RankingView()
                                     .tag(1)
-                                CalendarView()
+                                PlanningView()
                                     .tag(2)
                             })
                             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))

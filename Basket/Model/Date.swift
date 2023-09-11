@@ -16,6 +16,7 @@ struct Planning: Hashable, Codable, Identifiable {
     var team1: String
     var team2: String
     var result: String
+    var sort: Int
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -24,5 +25,6 @@ struct Planning: Hashable, Codable, Identifiable {
         case team1
         case team2
         case result
+        case sort = "sort"
     }
 }

@@ -2,70 +2,75 @@
 //  PlayerList.swift
 //  Basket
 //
-//  Created by Thibault Giraudon on 27/02/2023.
+//  Created by Thibault Giraudon on 27/02/2023. 
 //
 
 import SwiftUI
 
 struct PlayerList: View {
-    @ObservedObject private var viewModel = ViewModel()
+    @ObservedObject private var viewModel = PlayersViewModel()
+    @State var presentAddPlayerSheet = false
+    @State var presentLoginSheet = false
+    
     var body: some View {
-        List (viewModel.players) { player in
-            NavigationLink {
-                ScrollView{
-                    VStack {
-                        Image("bcmf")
-                            .ignoresSafeArea(edges: .top)
-                            .frame(height: 300)
-                        PlayerImage(url: player.imageURL)
-                            .offset(y: -130)
-                            .padding(.bottom, -130)
-                        
-                        VStack(alignment: .leading) {
-                            Text(player.name)
-                                .font(.title)
-                            Text(player.total)
-                            Divider()
-                            HStack {
-                                Text("Post \(player.post)")
-                                Spacer()
-                                Text("Taille : \(player.size)")
-                            }
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                            if !(player.description.contains("(null)")) {
-                                Divider()
-                                Text(player.description)
-                            }
-                        }
-                        .padding()
-                    }
-                    .navigationTitle(player.name)
-                    .navigationBarTitleDisplayMode(.inline)
-                    .ignoresSafeArea()
+        VStack {
+            Divider()
+            ForEach(viewModel.players) { player in
+                NavigationLink(destination: PlayerDetailView(player: player)) {
+                    PlayerRowView(player: player)
                 }
-            } label: {
-                HStack {
-                    Image(player.imageURL)
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 35, height: 45, alignment: .bottom)
-                        .mask(Rectangle().edgesIgnoringSafeArea(.top))
-                    Text(player.name)
-                    
-                    Spacer()
-                }
+                Divider()
             }
         }
-        .navigationTitle("BCMF")
+        .navigationTitle("Equipe")
+        .foregroundColor(.black)
+        .navigationBarItems(trailing: AddButton() {
+            self.presentAddPlayerSheet.toggle()
+        })
         .onAppear() {
-            self.viewModel.fetchData()
+            print("PlayersListView appears. Subscribing to data updates.")
+            self.viewModel.subscribe()
+        }
+        .sheet(isPresented: self.$presentAddPlayerSheet) {
+            PlayerEditView(mode: .new)
+        }
+        .navigationBarItems(leading: LoginButton() {
+            self.presentLoginSheet.toggle()
+        })
+        .sheet(isPresented: self.$presentLoginSheet) {
+            LoginView()
+        }
+    }
+}
+
+struct LoginButton: View {
+    var action: () -> Void
+    var body: some View {
+        Button(action: {self.action() }) {
+            Image(systemName: "person.circle")
+        }
+        .foregroundColor(.green)
+    }
+}
+
+struct AddButton: View {
+    @ObservedObject var gs = GlobalState.shared
+    
+    var action: () -> Void
+    var body: some View {
+        if gs.isAuthenticated == true {
+            Button(action: { self.action() }) {
+                Image(systemName: "plus")
+            }
+            .foregroundColor(.green)
         }
     }
 }
 
 struct PlayerList_Previews: PreviewProvider {
     static var previews: some View {
-       PlayerList()
+        NavigationView {
+            PlayerList()
+        }
     }
 }

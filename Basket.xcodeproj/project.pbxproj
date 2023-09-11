@@ -7,10 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CE4A40DE29B61E79009E2C70 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4A40DD29B61E79009E2C70 /* ViewModel.swift */; };
+		CE4A40DE29B61E79009E2C70 /* RankingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4A40DD29B61E79009E2C70 /* RankingViewModel.swift */; };
 		CE4A40E129B61EE7009E2C70 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CE4A40E029B61EE7009E2C70 /* FirebaseFirestore */; };
 		CE4A40E329B61EE7009E2C70 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CE4A40E229B61EE7009E2C70 /* FirebaseFirestoreSwift */; };
 		CE4A40E529B621B2009E2C70 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE4A40E429B621B2009E2C70 /* GoogleService-Info.plist */; };
+		CE67D60D2A9B4B9800F024EF /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE67D60C2A9B4B9800F024EF /* LoginView.swift */; };
+		CE67D6102A9CD01400F024EF /* Auth0 in Frameworks */ = {isa = PBXBuildFile; productRef = CE67D60F2A9CD01400F024EF /* Auth0 */; };
+		CE67D6122A9CD24C00F024EF /* Auth0.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE67D6112A9CD24C00F024EF /* Auth0.plist */; };
+		CE7B4A0C2A9A3F3100562DAA /* PlayerRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B4A0B2A9A3F3100562DAA /* PlayerRowView.swift */; };
+		CE7B4A0E2A9A3FF400562DAA /* PlayerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B4A0D2A9A3FF400562DAA /* PlayerDetailView.swift */; };
+		CE7B4A102A9A56A600562DAA /* RankingRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B4A0F2A9A56A600562DAA /* RankingRowView.swift */; };
+		CE7B4A122A9A579900562DAA /* RankingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B4A112A9A579900562DAA /* RankingsViewModel.swift */; };
+		CE7B4A142A9A599500562DAA /* RankingEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B4A132A9A599500562DAA /* RankingEditView.swift */; };
+		CE7B4A162A9A658B00562DAA /* PlanningsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B4A152A9A658B00562DAA /* PlanningsViewModel.swift */; };
+		CE7B4A182A9A672900562DAA /* PlanningEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B4A172A9A672900562DAA /* PlanningEditView.swift */; };
+		CE7B4A1A2A9A693800562DAA /* PlanningRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B4A192A9A693800562DAA /* PlanningRowView.swift */; };
+		CEAC87332A98F26100F7BBE3 /* PlayerEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAC87322A98F26100F7BBE3 /* PlayerEditView.swift */; };
+		CEAC87352A98F70C00F7BBE3 /* PlayersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAC87342A98F70C00F7BBE3 /* PlayersViewModel.swift */; };
+		CEAC87372A98F75900F7BBE3 /* PlanningViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAC87362A98F75900F7BBE3 /* PlanningViewModel.swift */; };
+		CEAC87392A98F8EC00F7BBE3 /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAC87382A98F8EC00F7BBE3 /* PlayerViewModel.swift */; };
 		CEAE66FE29ACA5B1001C4BFF /* BasketApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE66FD29ACA5B1001C4BFF /* BasketApp.swift */; };
 		CEAE670029ACA5B1001C4BFF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE66FF29ACA5B1001C4BFF /* ContentView.swift */; };
 		CEAE670229ACA5B2001C4BFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEAE670129ACA5B2001C4BFF /* Assets.xcassets */; };
@@ -21,16 +36,31 @@
 		CEAE671D29ACDAF6001C4BFF /* RankingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE671C29ACDAF6001C4BFF /* RankingView.swift */; };
 		CEAE672129ACE210001C4BFF /* Club.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE672029ACE210001C4BFF /* Club.swift */; };
 		CEAE673229AE4BCA001C4BFF /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE673129AE4BCA001C4BFF /* Date.swift */; };
-		CEAE673629AE4CA4001C4BFF /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE673529AE4CA4001C4BFF /* CalendarView.swift */; };
+		CEAE673629AE4CA4001C4BFF /* PlanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE673529AE4CA4001C4BFF /* PlanningView.swift */; };
 		CEBD6B1B29B11DC600120448 /* SwipeableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD6B1A29B11DC600120448 /* SwipeableView.swift */; };
 		CEBD6B1D29B11FBF00120448 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD6B1C29B11FBF00120448 /* Tab.swift */; };
-		CEBD6B2129B2219E00120448 /* RankTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD6B2029B2219E00120448 /* RankTitle.swift */; };
-		CEBD6B2929B24AB400120448 /* CalendarTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD6B2829B24AB400120448 /* CalendarTitle.swift */; };
+		CEBD6B2129B2219E00120448 /* RankingTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD6B2029B2219E00120448 /* RankingTitle.swift */; };
+		CEBD6B2929B24AB400120448 /* PlanningTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD6B2829B24AB400120448 /* PlanningTitleView.swift */; };
+		CEF567192AAF3F74005D4ABC /* NewSwipeableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF567182AAF3F74005D4ABC /* NewSwipeableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		CE4A40DD29B61E79009E2C70 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		CE4A40DD29B61E79009E2C70 /* RankingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingViewModel.swift; sourceTree = "<group>"; };
 		CE4A40E429B621B2009E2C70 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CE67D60C2A9B4B9800F024EF /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		CE67D6112A9CD24C00F024EF /* Auth0.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Auth0.plist; sourceTree = "<group>"; };
+		CE7B4A0B2A9A3F3100562DAA /* PlayerRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerRowView.swift; sourceTree = "<group>"; };
+		CE7B4A0D2A9A3FF400562DAA /* PlayerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetailView.swift; sourceTree = "<group>"; };
+		CE7B4A0F2A9A56A600562DAA /* RankingRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingRowView.swift; sourceTree = "<group>"; };
+		CE7B4A112A9A579900562DAA /* RankingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingsViewModel.swift; sourceTree = "<group>"; };
+		CE7B4A132A9A599500562DAA /* RankingEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingEditView.swift; sourceTree = "<group>"; };
+		CE7B4A152A9A658B00562DAA /* PlanningsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningsViewModel.swift; sourceTree = "<group>"; };
+		CE7B4A172A9A672900562DAA /* PlanningEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningEditView.swift; sourceTree = "<group>"; };
+		CE7B4A192A9A693800562DAA /* PlanningRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningRowView.swift; sourceTree = "<group>"; };
+		CEAC87322A98F26100F7BBE3 /* PlayerEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerEditView.swift; sourceTree = "<group>"; };
+		CEAC87342A98F70C00F7BBE3 /* PlayersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersViewModel.swift; sourceTree = "<group>"; };
+		CEAC87362A98F75900F7BBE3 /* PlanningViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningViewModel.swift; sourceTree = "<group>"; };
+		CEAC87382A98F8EC00F7BBE3 /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
 		CEAE66FA29ACA5B1001C4BFF /* Basket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Basket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEAE66FD29ACA5B1001C4BFF /* BasketApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketApp.swift; sourceTree = "<group>"; };
 		CEAE66FF29ACA5B1001C4BFF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -42,11 +72,12 @@
 		CEAE671C29ACDAF6001C4BFF /* RankingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingView.swift; sourceTree = "<group>"; };
 		CEAE672029ACE210001C4BFF /* Club.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Club.swift; sourceTree = "<group>"; };
 		CEAE673129AE4BCA001C4BFF /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
-		CEAE673529AE4CA4001C4BFF /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		CEAE673529AE4CA4001C4BFF /* PlanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningView.swift; sourceTree = "<group>"; };
 		CEBD6B1A29B11DC600120448 /* SwipeableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableView.swift; sourceTree = "<group>"; };
 		CEBD6B1C29B11FBF00120448 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
-		CEBD6B2029B2219E00120448 /* RankTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankTitle.swift; sourceTree = "<group>"; };
-		CEBD6B2829B24AB400120448 /* CalendarTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTitle.swift; sourceTree = "<group>"; };
+		CEBD6B2029B2219E00120448 /* RankingTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingTitle.swift; sourceTree = "<group>"; };
+		CEBD6B2829B24AB400120448 /* PlanningTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningTitleView.swift; sourceTree = "<group>"; };
+		CEF567182AAF3F74005D4ABC /* NewSwipeableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSwipeableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE67D6102A9CD01400F024EF /* Auth0 in Frameworks */,
 				CE4A40E129B61EE7009E2C70 /* FirebaseFirestore in Frameworks */,
 				CE4A40E329B61EE7009E2C70 /* FirebaseFirestoreSwift in Frameworks */,
 			);
@@ -62,6 +94,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE67D6132A9D218000F024EF /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				CE67D60C2A9B4B9800F024EF /* LoginView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		CE67D6152A9D21BD00F024EF /* PlayerModel */ = {
+			isa = PBXGroup;
+			children = (
+				CEAE670D29ACB329001C4BFF /* Player.swift */,
+				CEAC87342A98F70C00F7BBE3 /* PlayersViewModel.swift */,
+				CEAC87382A98F8EC00F7BBE3 /* PlayerViewModel.swift */,
+			);
+			path = PlayerModel;
+			sourceTree = "<group>";
+		};
 		CEAE66F129ACA5B1001C4BFF = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +137,7 @@
 				CEAE670129ACA5B2001C4BFF /* Assets.xcassets */,
 				CEAE670329ACA5B2001C4BFF /* Preview Content */,
 				CEAE671429ACB662001C4BFF /* Model */,
+				CE67D6112A9CD24C00F024EF /* Auth0.plist */,
 			);
 			path = Basket;
 			sourceTree = "<group>";
@@ -105,8 +156,9 @@
 				CEAE66FF29ACA5B1001C4BFF /* ContentView.swift */,
 				CEBD6B2429B230CB00120448 /* Player */,
 				CEBD6B2529B2312400120448 /* Calendar */,
-				CEBD6B2229B22FF300120448 /* Rank */,
+				CEBD6B2229B22FF300120448 /* Ranking */,
 				CEBD6B2329B2302100120448 /* Menu */,
+				CE67D6132A9D218000F024EF /* Login */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -114,21 +166,26 @@
 		CEAE671429ACB662001C4BFF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				CEAE670D29ACB329001C4BFF /* Player.swift */,
+				CE67D6152A9D21BD00F024EF /* PlayerModel */,
 				CEAE672029ACE210001C4BFF /* Club.swift */,
 				CEAE673129AE4BCA001C4BFF /* Date.swift */,
-				CE4A40DD29B61E79009E2C70 /* ViewModel.swift */,
+				CE4A40DD29B61E79009E2C70 /* RankingViewModel.swift */,
+				CEAC87362A98F75900F7BBE3 /* PlanningViewModel.swift */,
+				CE7B4A112A9A579900562DAA /* RankingsViewModel.swift */,
+				CE7B4A152A9A658B00562DAA /* PlanningsViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		CEBD6B2229B22FF300120448 /* Rank */ = {
+		CEBD6B2229B22FF300120448 /* Ranking */ = {
 			isa = PBXGroup;
 			children = (
 				CEAE671C29ACDAF6001C4BFF /* RankingView.swift */,
-				CEBD6B2029B2219E00120448 /* RankTitle.swift */,
+				CEBD6B2029B2219E00120448 /* RankingTitle.swift */,
+				CE7B4A0F2A9A56A600562DAA /* RankingRowView.swift */,
+				CE7B4A132A9A599500562DAA /* RankingEditView.swift */,
 			);
-			path = Rank;
+			path = Ranking;
 			sourceTree = "<group>";
 		};
 		CEBD6B2329B2302100120448 /* Menu */ = {
@@ -136,6 +193,7 @@
 			children = (
 				CEBD6B1A29B11DC600120448 /* SwipeableView.swift */,
 				CEBD6B1C29B11FBF00120448 /* Tab.swift */,
+				CEF567182AAF3F74005D4ABC /* NewSwipeableView.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -143,8 +201,11 @@
 		CEBD6B2429B230CB00120448 /* Player */ = {
 			isa = PBXGroup;
 			children = (
+				CEAC87322A98F26100F7BBE3 /* PlayerEditView.swift */,
 				CEAE670B29ACB2C4001C4BFF /* PlayerImage.swift */,
 				CEAE671829ACB93C001C4BFF /* PalyerList.swift */,
+				CE7B4A0B2A9A3F3100562DAA /* PlayerRowView.swift */,
+				CE7B4A0D2A9A3FF400562DAA /* PlayerDetailView.swift */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -152,8 +213,10 @@
 		CEBD6B2529B2312400120448 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
-				CEAE673529AE4CA4001C4BFF /* CalendarView.swift */,
-				CEBD6B2829B24AB400120448 /* CalendarTitle.swift */,
+				CEAE673529AE4CA4001C4BFF /* PlanningView.swift */,
+				CEBD6B2829B24AB400120448 /* PlanningTitleView.swift */,
+				CE7B4A172A9A672900562DAA /* PlanningEditView.swift */,
+				CE7B4A192A9A693800562DAA /* PlanningRowView.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -177,6 +240,7 @@
 			packageProductDependencies = (
 				CE4A40E029B61EE7009E2C70 /* FirebaseFirestore */,
 				CE4A40E229B61EE7009E2C70 /* FirebaseFirestoreSwift */,
+				CE67D60F2A9CD01400F024EF /* Auth0 */,
 			);
 			productName = Basket;
 			productReference = CEAE66FA29ACA5B1001C4BFF /* Basket.app */;
@@ -208,6 +272,7 @@
 			mainGroup = CEAE66F129ACA5B1001C4BFF;
 			packageReferences = (
 				CE4A40DF29B61EE7009E2C70 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				CE67D60E2A9CD01400F024EF /* XCRemoteSwiftPackageReference "Auth0" */,
 			);
 			productRefGroup = CEAE66FB29ACA5B1001C4BFF /* Products */;
 			projectDirPath = "";
@@ -226,6 +291,7 @@
 				CEAE670529ACA5B2001C4BFF /* Preview Assets.xcassets in Resources */,
 				CEAE670229ACA5B2001C4BFF /* Assets.xcassets in Resources */,
 				CE4A40E529B621B2009E2C70 /* GoogleService-Info.plist in Resources */,
+				CE67D6122A9CD24C00F024EF /* Auth0.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,18 +303,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEAE670029ACA5B1001C4BFF /* ContentView.swift in Sources */,
+				CE7B4A162A9A658B00562DAA /* PlanningsViewModel.swift in Sources */,
 				CEAE671D29ACDAF6001C4BFF /* RankingView.swift in Sources */,
-				CEBD6B2929B24AB400120448 /* CalendarTitle.swift in Sources */,
+				CE7B4A0C2A9A3F3100562DAA /* PlayerRowView.swift in Sources */,
+				CEBD6B2929B24AB400120448 /* PlanningTitleView.swift in Sources */,
 				CEAE673229AE4BCA001C4BFF /* Date.swift in Sources */,
+				CEF567192AAF3F74005D4ABC /* NewSwipeableView.swift in Sources */,
 				CEAE670E29ACB329001C4BFF /* Player.swift in Sources */,
 				CEBD6B1D29B11FBF00120448 /* Tab.swift in Sources */,
 				CEAE671929ACB93C001C4BFF /* PalyerList.swift in Sources */,
-				CE4A40DE29B61E79009E2C70 /* ViewModel.swift in Sources */,
+				CE7B4A182A9A672900562DAA /* PlanningEditView.swift in Sources */,
+				CE4A40DE29B61E79009E2C70 /* RankingViewModel.swift in Sources */,
+				CEAC87372A98F75900F7BBE3 /* PlanningViewModel.swift in Sources */,
 				CEAE66FE29ACA5B1001C4BFF /* BasketApp.swift in Sources */,
+				CE7B4A142A9A599500562DAA /* RankingEditView.swift in Sources */,
+				CEAC87352A98F70C00F7BBE3 /* PlayersViewModel.swift in Sources */,
 				CEAE672129ACE210001C4BFF /* Club.swift in Sources */,
-				CEBD6B2129B2219E00120448 /* RankTitle.swift in Sources */,
-				CEAE673629AE4CA4001C4BFF /* CalendarView.swift in Sources */,
+				CEBD6B2129B2219E00120448 /* RankingTitle.swift in Sources */,
+				CEAE673629AE4CA4001C4BFF /* PlanningView.swift in Sources */,
 				CEAE670C29ACB2C4001C4BFF /* PlayerImage.swift in Sources */,
+				CE7B4A0E2A9A3FF400562DAA /* PlayerDetailView.swift in Sources */,
+				CEAC87392A98F8EC00F7BBE3 /* PlayerViewModel.swift in Sources */,
+				CE67D60D2A9B4B9800F024EF /* LoginView.swift in Sources */,
+				CE7B4A1A2A9A693800562DAA /* PlanningRowView.swift in Sources */,
+				CEAC87332A98F26100F7BBE3 /* PlayerEditView.swift in Sources */,
+				CE7B4A102A9A56A600562DAA /* RankingRowView.swift in Sources */,
+				CE7B4A122A9A579900562DAA /* RankingsViewModel.swift in Sources */,
 				CEBD6B1B29B11DC600120448 /* SwipeableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -382,9 +462,12 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Basket/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = BCMF;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -412,9 +495,12 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Basket/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = BCMF;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -462,6 +548,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		CE67D60E2A9CD01400F024EF /* XCRemoteSwiftPackageReference "Auth0" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/auth0/Auth0.swift";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 2.5.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -474,6 +568,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CE4A40DF29B61EE7009E2C70 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
+		};
+		CE67D60F2A9CD01400F024EF /* Auth0 */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE67D60E2A9CD01400F024EF /* XCRemoteSwiftPackageReference "Auth0" */;
+			productName = Auth0;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
