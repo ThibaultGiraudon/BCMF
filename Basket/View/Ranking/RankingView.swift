@@ -47,7 +47,7 @@ struct RankingView: View {
         }
         .onAppear() {
             self.viewModel.subscribe()
-            }
+        }
     }
 }
 

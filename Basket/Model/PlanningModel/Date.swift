@@ -25,6 +25,6 @@ struct Planning: Hashable, Codable, Identifiable {
         case team1
         case team2
         case result
-        case sort = "sort"
+        case sort
     }
 }

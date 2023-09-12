@@ -37,11 +37,11 @@ struct PlayerDetailView: View {
         }
         .navigationTitle(player.name)
         .navigationBarItems(trailing:
-                                Button(action: {self.presentEditPlayerSheet.toggle() }) {
-            if gs.isAuthenticated == true {
-                Text("Edit")}
-        }
-                            )
+            Button(action: {self.presentEditPlayerSheet.toggle() }) {
+                if gs.isAuthenticated == true {
+                    Text("Edit")}
+            }
+        )
         .onAppear() {
             print("PlayerDetailsView.onAppear() for \(self.player.name)")
         }
@@ -51,9 +51,9 @@ struct PlayerDetailView: View {
         .sheet(isPresented: self.$presentEditPlayerSheet) {
             PlayerEditView(viewModel: PlayerViewModel(player: player), mode: .edit) { result in
                 if case .success(let action) = result, action == .delete {
-                  self.presentationMode.wrappedValue.dismiss()
+                    self.presentationMode.wrappedValue.dismiss()
                 }
-              }
+            }
         }
         .navigationBarTitleDisplayMode(.inline)
         .ignoresSafeArea()

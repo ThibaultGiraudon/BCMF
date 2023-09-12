@@ -32,7 +32,6 @@ class RankingsViewModel: ObservableObject {
                     print("No documents")
                     return
                 }
-                
                 self.clubs = documents.compactMap { queryDocumentSnapshot -> Club? in
                     return try? queryDocumentSnapshot.data(as: Club.self)
                 }

@@ -56,13 +56,14 @@ struct LoginView: View {
             }
         }
     }
+    
     func logout() {
         let firebaseAuth = Auth.auth()
         do {
-          try firebaseAuth.signOut()
+            try firebaseAuth.signOut()
             gs.isAuthenticated = false
         } catch let signOutError as NSError {
-          print("Error signing out: %@", signOutError)
+            print("Error signing out: %@", signOutError)
         }
     }
 }

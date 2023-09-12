@@ -24,7 +24,7 @@ class PlanningViewModel: ObservableObject {
             .sink { [weak self] planning in
                 self?.modified = true
             }
-      .store(in: &self.cancellables)
+            .store(in: &self.cancellables)
     }
   
     private var db = Firestore.firestore()

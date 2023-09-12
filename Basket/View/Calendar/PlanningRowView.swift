@@ -14,26 +14,18 @@ struct PlanningRowView: View {
     var body: some View {
         HStack{
             Text(planning.date)
-                .multilineTextAlignment(.leading)
                 .frame(width: UIScreen.main.bounds.width * (0.07))
-                .font(.system(size: 7))
             Text(planning.hour)
-                .multilineTextAlignment(.leading)
                 .frame(width: UIScreen.main.bounds.width * (0.07))
-                .font(.system(size: 7))
             Text(planning.team1)
-                .multilineTextAlignment(.leading)
                 .frame(width: UIScreen.main.bounds.width * (0.34))
-                .font(.system(size: 7))
             Text(planning.team2)
-                .multilineTextAlignment(.leading)
                 .frame(width: UIScreen.main.bounds.width * (0.34))
-                .font(.system(size: 7))
             Text(planning.result)
-                .multilineTextAlignment(.leading)
                 .frame(width: UIScreen.main.bounds.width * (0.09))
-                .font(.system(size: 7))
         }
+        .font(.system(size: 7))
+        .multilineTextAlignment(.leading)
         .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
     }
 }

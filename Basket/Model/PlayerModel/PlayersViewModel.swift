@@ -15,14 +15,14 @@ class PlayersViewModel: ObservableObject {
     private var listenerRegistration: ListenerRegistration?
     
     deinit {
-      unsubscribe()
+        unsubscribe()
     }
     
     func unsubscribe() {
-      if listenerRegistration != nil {
-        listenerRegistration?.remove()
-        listenerRegistration = nil
-      }
+        if listenerRegistration != nil {
+            listenerRegistration?.remove()
+            listenerRegistration = nil
+        }
     }
     
     func subscribe() {
@@ -32,7 +32,6 @@ class PlayersViewModel: ObservableObject {
                     print("No documents")
                     return
                 }
-                
                 self.players = documents.compactMap { queryDocumentSnapshot -> Player? in
                     return try? queryDocumentSnapshot.data(as: Player.self)
                 }

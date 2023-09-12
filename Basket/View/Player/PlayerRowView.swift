@@ -30,13 +30,13 @@ struct  PlayerRowView: View {
                     storageRef.downloadURL { (url, error) in
                         if let url = url {
                             self.imageURL = url
-                        } else {
+                        }
+                        else {
                             print("Erreur lors du téléchargement de l'URL de l'image: \(error?.localizedDescription ?? "Erreur inconnue")")
                         }
                     }
                 }
             Text(player.name)
-            
             Spacer()
         }
         .foregroundColor(colorScheme == .dark ? Color.white : Color.black)

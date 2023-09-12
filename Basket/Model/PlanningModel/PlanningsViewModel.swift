@@ -32,7 +32,6 @@ class PlanningsViewModel: ObservableObject {
                     print("No documents")
                     return
                 }
-                
                 self.plannings = documents.compactMap { queryDocumentSnapshot -> Planning? in
                     return try? queryDocumentSnapshot.data(as: Planning.self)
                 }
