@@ -15,7 +15,7 @@ struct PlayerDetailView: View {
     
     var body: some View {
         VStack {
-            PlayerImage(url: player.imageURL)
+            PlayerImage(image: player.imageURL)
             VStack(alignment: .leading) {
                 Text(player.name)
                     .font(.title)

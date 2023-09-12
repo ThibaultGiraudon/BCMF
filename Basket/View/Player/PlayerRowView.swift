@@ -6,18 +6,35 @@
 //
 
 import SwiftUI
+import Combine
+import FirebaseStorage
+import SDWebImageSwiftUI
 
 struct  PlayerRowView: View {
     @Environment(\.colorScheme) var colorScheme
     
+    @State private var path: String = "player_images/"
+    @State private var imageURL: URL?
     var player: Player
     var body: some View {
         HStack {
-            Image(player.imageURL)
+            WebImage(url: imageURL)
                 .resizable()
                 .scaledToFill()
                 .frame(width: 35, height: 45, alignment: .bottom)
                 .mask(Rectangle().edgesIgnoringSafeArea(.top))
+                .onAppear {
+                    let storage = Storage.storage()
+
+                    let storageRef = storage.reference().child(path + player.imageURL)
+                    storageRef.downloadURL { (url, error) in
+                        if let url = url {
+                            self.imageURL = url
+                        } else {
+                            print("Erreur lors du téléchargement de l'URL de l'image: \(error?.localizedDescription ?? "Erreur inconnue")")
+                        }
+                    }
+                }
             Text(player.name)
             
             Spacer()

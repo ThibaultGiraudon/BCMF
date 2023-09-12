@@ -37,11 +37,12 @@
 		CEAE672129ACE210001C4BFF /* Club.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE672029ACE210001C4BFF /* Club.swift */; };
 		CEAE673229AE4BCA001C4BFF /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE673129AE4BCA001C4BFF /* Date.swift */; };
 		CEAE673629AE4CA4001C4BFF /* PlanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE673529AE4CA4001C4BFF /* PlanningView.swift */; };
-		CEBD6B1B29B11DC600120448 /* SwipeableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD6B1A29B11DC600120448 /* SwipeableView.swift */; };
-		CEBD6B1D29B11FBF00120448 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD6B1C29B11FBF00120448 /* Tab.swift */; };
 		CEBD6B2129B2219E00120448 /* RankingTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD6B2029B2219E00120448 /* RankingTitle.swift */; };
 		CEBD6B2929B24AB400120448 /* PlanningTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD6B2829B24AB400120448 /* PlanningTitleView.swift */; };
-		CEF567192AAF3F74005D4ABC /* NewSwipeableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF567182AAF3F74005D4ABC /* NewSwipeableView.swift */; };
+		CED524CB2AB062250076A2E8 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CED524CA2AB062250076A2E8 /* FirebaseAuth */; };
+		CED524CD2AB06F410076A2E8 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = CED524CC2AB06F410076A2E8 /* FirebaseStorage */; };
+		CED524D02AB079110076A2E8 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = CED524CF2AB079110076A2E8 /* SDWebImageSwiftUI */; };
+		CEF567192AAF3F74005D4ABC /* SwipeableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF567182AAF3F74005D4ABC /* SwipeableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,11 +74,9 @@
 		CEAE672029ACE210001C4BFF /* Club.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Club.swift; sourceTree = "<group>"; };
 		CEAE673129AE4BCA001C4BFF /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		CEAE673529AE4CA4001C4BFF /* PlanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningView.swift; sourceTree = "<group>"; };
-		CEBD6B1A29B11DC600120448 /* SwipeableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableView.swift; sourceTree = "<group>"; };
-		CEBD6B1C29B11FBF00120448 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 		CEBD6B2029B2219E00120448 /* RankingTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingTitle.swift; sourceTree = "<group>"; };
 		CEBD6B2829B24AB400120448 /* PlanningTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningTitleView.swift; sourceTree = "<group>"; };
-		CEF567182AAF3F74005D4ABC /* NewSwipeableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSwipeableView.swift; sourceTree = "<group>"; };
+		CEF567182AAF3F74005D4ABC /* SwipeableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,9 +84,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CED524D02AB079110076A2E8 /* SDWebImageSwiftUI in Frameworks */,
 				CE67D6102A9CD01400F024EF /* Auth0 in Frameworks */,
 				CE4A40E129B61EE7009E2C70 /* FirebaseFirestore in Frameworks */,
 				CE4A40E329B61EE7009E2C70 /* FirebaseFirestoreSwift in Frameworks */,
+				CED524CD2AB06F410076A2E8 /* FirebaseStorage in Frameworks */,
+				CED524CB2AB062250076A2E8 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,6 +119,7 @@
 			children = (
 				CEAE66FC29ACA5B1001C4BFF /* Basket */,
 				CEAE66FB29ACA5B1001C4BFF /* Products */,
+				CED524C92AB062250076A2E8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -187,9 +190,7 @@
 		CEBD6B2329B2302100120448 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				CEBD6B1A29B11DC600120448 /* SwipeableView.swift */,
-				CEBD6B1C29B11FBF00120448 /* Tab.swift */,
-				CEF567182AAF3F74005D4ABC /* NewSwipeableView.swift */,
+				CEF567182AAF3F74005D4ABC /* SwipeableView.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -215,6 +216,13 @@
 				CE7B4A192A9A693800562DAA /* PlanningRowView.swift */,
 			);
 			path = Calendar;
+			sourceTree = "<group>";
+		};
+		CED524C92AB062250076A2E8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		CEF5671A2AAF5247005D4ABC /* RankingModel */ = {
@@ -257,6 +265,9 @@
 				CE4A40E029B61EE7009E2C70 /* FirebaseFirestore */,
 				CE4A40E229B61EE7009E2C70 /* FirebaseFirestoreSwift */,
 				CE67D60F2A9CD01400F024EF /* Auth0 */,
+				CED524CA2AB062250076A2E8 /* FirebaseAuth */,
+				CED524CC2AB06F410076A2E8 /* FirebaseStorage */,
+				CED524CF2AB079110076A2E8 /* SDWebImageSwiftUI */,
 			);
 			productName = Basket;
 			productReference = CEAE66FA29ACA5B1001C4BFF /* Basket.app */;
@@ -289,6 +300,7 @@
 			packageReferences = (
 				CE4A40DF29B61EE7009E2C70 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				CE67D60E2A9CD01400F024EF /* XCRemoteSwiftPackageReference "Auth0" */,
+				CED524CE2AB079110076A2E8 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			productRefGroup = CEAE66FB29ACA5B1001C4BFF /* Products */;
 			projectDirPath = "";
@@ -324,9 +336,8 @@
 				CE7B4A0C2A9A3F3100562DAA /* PlayerRowView.swift in Sources */,
 				CEBD6B2929B24AB400120448 /* PlanningTitleView.swift in Sources */,
 				CEAE673229AE4BCA001C4BFF /* Date.swift in Sources */,
-				CEF567192AAF3F74005D4ABC /* NewSwipeableView.swift in Sources */,
+				CEF567192AAF3F74005D4ABC /* SwipeableView.swift in Sources */,
 				CEAE670E29ACB329001C4BFF /* Player.swift in Sources */,
-				CEBD6B1D29B11FBF00120448 /* Tab.swift in Sources */,
 				CEAE671929ACB93C001C4BFF /* PalyerList.swift in Sources */,
 				CE7B4A182A9A672900562DAA /* PlanningEditView.swift in Sources */,
 				CE4A40DE29B61E79009E2C70 /* RankingViewModel.swift in Sources */,
@@ -345,7 +356,6 @@
 				CEAC87332A98F26100F7BBE3 /* PlayerEditView.swift in Sources */,
 				CE7B4A102A9A56A600562DAA /* RankingRowView.swift in Sources */,
 				CE7B4A122A9A579900562DAA /* RankingsViewModel.swift in Sources */,
-				CEBD6B1B29B11DC600120448 /* SwipeableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -572,6 +582,14 @@
 				minimumVersion = 2.5.0;
 			};
 		};
+		CED524CE2AB079110076A2E8 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -589,6 +607,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CE67D60E2A9CD01400F024EF /* XCRemoteSwiftPackageReference "Auth0" */;
 			productName = Auth0;
+		};
+		CED524CA2AB062250076A2E8 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE4A40DF29B61EE7009E2C70 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		CED524CC2AB06F410076A2E8 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE4A40DF29B61EE7009E2C70 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		CED524CF2AB079110076A2E8 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CED524CE2AB079110076A2E8 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

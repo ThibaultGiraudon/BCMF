@@ -6,26 +6,35 @@
 //
 
 import SwiftUI
-import Auth0
+import Firebase
+import FirebaseAuth
+//import Auth0
 
 class GlobalState: ObservableObject {
     static let shared = GlobalState()
     
-    @Published var isAuthenticated: Bool = true
+    @Published var isAuthenticated: Bool = false
 }
 
 struct LoginView: View {
     @ObservedObject var gs = GlobalState.shared
+    @State var email = ""
+    @State var password = ""
     
     var body: some View {
         if gs.isAuthenticated == false{
-            Button("Log in") {
-                login()
+            VStack {
+                TextField("Email", text: $email)
+                SecureField("Password", text: $password)
+                Button("Log in") {
+                    login()
+                }
+                .padding()
+                .background(.green)
+                .foregroundColor(.white)
+                .clipShape(Capsule())
             }
             .padding()
-            .background(.green)
-            .foregroundColor(.white)
-            .clipShape(Capsule())
         }
         else {
             Button("Log out") {
@@ -37,34 +46,23 @@ struct LoginView: View {
             .clipShape(Capsule())
         }
     }
-}
-
-extension LoginView {
-    private func login() {
-        Auth0
-        .webAuth()
-        .start { result in
-            switch result {
-                case .failure(let error):
-                    print("Failed with: \(error)")
-                case .success(let credentials):
-                    gs.isAuthenticated = true
-                    print("Credentials: \(credentials)")
-                    print("ID token: \(credentials.idToken)")
+    func login() {
+        Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
+            if error != nil {
+                print(error?.localizedDescription ?? "")
+            } else {
+                print("success")
+                gs.isAuthenticated = true
             }
         }
     }
-    
-    private func logout() {
-        Auth0
-        .webAuth()
-        .clearSession { result in
-            switch result {
-                case .failure(let error):
-                    print("Failed with: \(error)")
-                case .success:
-                    gs.isAuthenticated = false
-          }
+    func logout() {
+        let firebaseAuth = Auth.auth()
+        do {
+          try firebaseAuth.signOut()
+            gs.isAuthenticated = false
+        } catch let signOutError as NSError {
+          print("Error signing out: %@", signOutError)
         }
     }
 }
