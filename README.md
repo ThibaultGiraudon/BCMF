@@ -17,7 +17,7 @@ I've created this app mainly has a challenge for the moment it is not planned to
 
 ### Improvements
 
-- Store the image in the database
+- Upload the image in the database from the app
 - Use a date picker when editing or adding match's dates
 
 ## Getting Started
