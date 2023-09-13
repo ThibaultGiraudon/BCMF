@@ -31,16 +31,29 @@ struct RankingView: View {
             }
         }
         .navigationTitle("Classement")
-        .navigationBarItems(leading: LoginButton() {
-            self.presentLoginSheet.toggle()
-        })
-        .sheet(isPresented: self.$presentLoginSheet) {
-            LoginView()
-        }
-        .navigationBarItems(trailing: AddButton() {
-            self.presentAddClubSheet.toggle()
-        })
-        .sheet(isPresented: self.$presentAddClubSheet) {
+//        .toolbar {
+//            ToolbarItem(placement: .confirmationAction) {
+//                Menu {
+//                    Button(action: { self.presentAddClubSheet.toggle() }) {
+//                        Label("Add", systemImage: "plus")
+//                    }
+//                    Button(action: { self.presentLoginSheet.toggle() }) {
+//                        Label("Profil", systemImage: "person.circle")
+//                    }
+//                    HStack {
+//                        Toggle("Mode sombre", isOn: $gs.isDarkMode)
+//                    }
+//                }
+//                label: {
+//                    Label("Settings", systemImage: "gearshape.fill")
+//                        .foregroundColor(.green)
+//                }
+//            }
+//        }
+//        .sheet(isPresented: self.$presentLoginSheet) {
+//            LoginView()
+//        }
+        .sheet(isPresented: $gs.presentAddSheet) {
             NavigationView {
                 RankingEditView()
             }
@@ -48,6 +61,7 @@ struct RankingView: View {
         .onAppear() {
             self.viewModel.subscribe()
         }
+        .preferredColorScheme(gs.isDarkMode == true ? .dark : .light)
     }
 }
 

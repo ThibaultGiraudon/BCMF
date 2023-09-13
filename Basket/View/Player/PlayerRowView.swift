@@ -11,8 +11,7 @@ import FirebaseStorage
 import SDWebImageSwiftUI
 
 struct  PlayerRowView: View {
-    @Environment(\.colorScheme) var colorScheme
-    
+    @ObservedObject var gs = GlobalState.shared
     @State private var path: String = "player_images/"
     @State private var imageURL: URL?
     var player: Player
@@ -39,7 +38,7 @@ struct  PlayerRowView: View {
             Text(player.name)
             Spacer()
         }
-        .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+        .foregroundColor(gs.isDarkMode == true ? .white : .black)
         .padding(.horizontal)
     }
 }

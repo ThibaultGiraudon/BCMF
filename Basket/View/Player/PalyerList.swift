@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PlayerList: View {
     @ObservedObject private var viewModel = PlayersViewModel()
+    @ObservedObject var gs = GlobalState.shared
     @State var presentAddPlayerSheet = false
     @State var presentLoginSheet = false
     
@@ -23,23 +24,36 @@ struct PlayerList: View {
             }
         }
         .navigationTitle("Equipe")
-        .foregroundColor(.black)
-        .navigationBarItems(trailing: AddButton() {
-            self.presentAddPlayerSheet.toggle()
-        })
+//        .toolbar {
+//            ToolbarItem(placement: .confirmationAction) {
+//                Menu {
+//                    Button(action: { self.presentAddPlayerSheet.toggle() }) {
+//                        Label("Add", systemImage: "plus")
+//                    }
+//                    Button(action: { self.presentLoginSheet.toggle() }) {
+//                        Label("Profil", systemImage: "person.circle")
+//                    }
+//                    HStack {
+//                        Toggle("Mode sombre", isOn: $gs.isDarkMode)
+//                    }
+//                }
+//                label: {
+//                    Label("Settings", systemImage: "gearshape.fill")
+//                        .foregroundColor(.green)
+//                }
+//            }
+//        }
+        .sheet(isPresented: $gs.presentAddSheet) {
+            PlayerEditView(mode: .new)
+        }
+//        .sheet(isPresented: self.$presentLoginSheet) {
+//            LoginView()
+//        }
         .onAppear() {
             print("PlayersListView appears. Subscribing to data updates.")
             self.viewModel.subscribe()
         }
-        .sheet(isPresented: self.$presentAddPlayerSheet) {
-            PlayerEditView(mode: .new)
-        }
-        .navigationBarItems(leading: LoginButton() {
-            self.presentLoginSheet.toggle()
-        })
-        .sheet(isPresented: self.$presentLoginSheet) {
-            LoginView()
-        }
+        .preferredColorScheme(gs.isDarkMode == true ? .dark : .light)
     }
 }
 

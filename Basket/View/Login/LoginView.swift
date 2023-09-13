@@ -8,12 +8,21 @@
 import SwiftUI
 import Firebase
 import FirebaseAuth
-//import Auth0
 
 class GlobalState: ObservableObject {
     static let shared = GlobalState()
     
     @Published var isAuthenticated: Bool = false
+    @Published var presentAddSheet: Bool = false
+    @Published var isDarkMode = false {
+        didSet {
+            UserDefaults.standard.set(isDarkMode, forKey: "isDarkModeEnable")
+        }
+    }
+    
+    init() {
+        self.isDarkMode = UserDefaults.standard.bool(forKey: "isDarkModeEnable")
+    }
 }
 
 struct LoginView: View {

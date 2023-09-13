@@ -9,9 +9,9 @@ import SwiftUI
 
 struct PlanningView: View {
     @ObservedObject private var viewModel = PlanningsViewModel()
+    @ObservedObject var gs = GlobalState.shared
     @State var presentAddPlanningSheet = false
     @State var presentLoginSheet = false
-    @ObservedObject var gs = GlobalState.shared
     
     var body: some View {
         VStack {
@@ -31,16 +31,29 @@ struct PlanningView: View {
             }
         }
         .navigationTitle("Planning")
-        .navigationBarItems(leading: LoginButton() {
-            self.presentLoginSheet.toggle()
-        })
-        .sheet(isPresented: self.$presentLoginSheet) {
-            LoginView()
-        }
-        .navigationBarItems(trailing: AddButton() {
-            self.presentAddPlanningSheet.toggle()
-        })
-        .sheet(isPresented: self.$presentAddPlanningSheet) {
+//        .toolbar {
+//            ToolbarItem(placement: .confirmationAction) {
+//                Menu {
+//                    Button(action: { self.presentAddPlanningSheet.toggle() }) {
+//                        Label("Add", systemImage: "plus")
+//                    }
+//                    Button(action: { self.presentLoginSheet.toggle() }) {
+//                        Label("Profil", systemImage: "person.circle")
+//                    }
+//                    HStack {
+//                        Toggle("Mode sombre", isOn: $gs.isDarkMode)
+//                    }
+//                }
+//                label: {
+//                    Label("Settings", systemImage: "gearshape.fill")
+//                        .foregroundColor(.green)
+//                }
+//            }
+//        }
+//        .sheet(isPresented: self.$presentLoginSheet) {
+//            LoginView()
+//        }
+        .sheet(isPresented: $gs.presentAddSheet) {
             NavigationView {
                 PlanningEditView()
             }
@@ -48,6 +61,7 @@ struct PlanningView: View {
         .onAppear() {
             self.viewModel.subscribe()
         }
+        .preferredColorScheme(gs.isDarkMode == true ? .dark : .light)
     }
 }
 
