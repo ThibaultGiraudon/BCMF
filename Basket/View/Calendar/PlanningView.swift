@@ -18,41 +18,19 @@ struct PlanningView: View {
             PlanningTitleView()
             Divider()
             ForEach(viewModel.plannings) { planning in
-                if gs.isAuthenticated {
+//                if gs.isAuthenticated {
                     NavigationLink(destination : PlanningEditView(viewModel: PlanningViewModel(planning: planning), mode: .edit)) {
                         PlanningRowView(planning: planning)
                     }
                     .foregroundColor(.black)
-                }
-                else {
-                    PlanningRowView(planning: planning)
-                }
+//                }
+//                else {
+//                    PlanningRowView(planning: planning)
+//                }
                 Divider()
             }
         }
         .navigationTitle("Planning")
-//        .toolbar {
-//            ToolbarItem(placement: .confirmationAction) {
-//                Menu {
-//                    Button(action: { self.presentAddPlanningSheet.toggle() }) {
-//                        Label("Add", systemImage: "plus")
-//                    }
-//                    Button(action: { self.presentLoginSheet.toggle() }) {
-//                        Label("Profil", systemImage: "person.circle")
-//                    }
-//                    HStack {
-//                        Toggle("Mode sombre", isOn: $gs.isDarkMode)
-//                    }
-//                }
-//                label: {
-//                    Label("Settings", systemImage: "gearshape.fill")
-//                        .foregroundColor(.green)
-//                }
-//            }
-//        }
-//        .sheet(isPresented: self.$presentLoginSheet) {
-//            LoginView()
-//        }
         .sheet(isPresented: $gs.presentAddSheet) {
             NavigationView {
                 PlanningEditView()

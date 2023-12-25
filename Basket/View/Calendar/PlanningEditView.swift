@@ -18,8 +18,8 @@ struct PlanningEditView: View {
             Section(header: Text("Date")) {
                 TextField("Equipe 1", text: $viewModel.planning.team1)
                 TextField("Equipe 2", text: $viewModel.planning.team2)
-                TextField("Date", text: $viewModel.planning.date)
-                TextField("Heure", text: $viewModel.planning.hour)
+                DatePicker("Date", selection: $viewModel.planning.date, displayedComponents: [.date])
+                DatePicker("Heure", selection: $viewModel.planning.hour, displayedComponents: [.hourAndMinute])
                 TextField("Resultat", text: $viewModel.planning.result)
                 TextField("Ordre", value: $viewModel.planning.sort, formatter: NumberFormatter())
             }
@@ -72,7 +72,16 @@ struct PlanningEditView: View {
 
 struct PlanningEditView_Previews: PreviewProvider {
     static var previews: some View {
-        let planning = Planning(date: "12", hour: "12", team1: "12", team2: "12", result: "12-12", sort: 12)
+        let planning = Planning(
+            date: Date(), // Replace with your actual date value
+            hour: Date(), // Replace with your actual date value
+            team1: "12",
+            team2: "12",
+            result: "12-12",
+            image1: "https://firebasestorage.googleapis.com/v0/b/bcmf-d3d8a.appspot.com/o/bcmf%402x.jpg?alt=media&token=2bf8f095-5f3b-4d33-a4e8-2ef67583e190",
+            image2: "",
+            sort: 12
+        )
         let planningViewModel = PlanningViewModel(planning: planning)
         NavigationView {
             PlanningEditView(viewModel: planningViewModel, mode: .edit)

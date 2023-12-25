@@ -14,41 +14,18 @@ struct PlayerList: View {
     @State var presentLoginSheet = false
     
     var body: some View {
-        VStack {
-            Divider()
+        ScrollView {
             ForEach(viewModel.players) { player in
                 NavigationLink(destination: PlayerDetailView(player: player)) {
                     PlayerRowView(player: player)
                 }
-                Divider()
             }
         }
         .navigationTitle("Equipe")
-//        .toolbar {
-//            ToolbarItem(placement: .confirmationAction) {
-//                Menu {
-//                    Button(action: { self.presentAddPlayerSheet.toggle() }) {
-//                        Label("Add", systemImage: "plus")
-//                    }
-//                    Button(action: { self.presentLoginSheet.toggle() }) {
-//                        Label("Profil", systemImage: "person.circle")
-//                    }
-//                    HStack {
-//                        Toggle("Mode sombre", isOn: $gs.isDarkMode)
-//                    }
-//                }
-//                label: {
-//                    Label("Settings", systemImage: "gearshape.fill")
-//                        .foregroundColor(.green)
-//                }
-//            }
-//        }
+        .toolbarBackground(.green)
         .sheet(isPresented: $gs.presentAddSheet) {
             PlayerEditView(mode: .new)
         }
-//        .sheet(isPresented: self.$presentLoginSheet) {
-//            LoginView()
-//        }
         .onAppear() {
             print("PlayersListView appears. Subscribing to data updates.")
             self.viewModel.subscribe()

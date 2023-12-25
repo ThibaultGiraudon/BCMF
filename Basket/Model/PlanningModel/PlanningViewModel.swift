@@ -16,7 +16,7 @@ class PlanningViewModel: ObservableObject {
   
     private var cancellables = Set<AnyCancellable>()
   
-    init(planning: Planning = Planning(date: "", hour: "", team1: "", team2: "", result: "", sort: 0)) {
+    init(planning: Planning = Planning(date: Date.now, hour: Date.now, team1: "", team2: "", result: "", image1: "", image2: "", sort: 0)) {
         self.planning = planning
     
         self.$planning

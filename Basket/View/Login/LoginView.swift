@@ -34,7 +34,17 @@ struct LoginView: View {
         if gs.isAuthenticated == false{
             VStack {
                 TextField("Email", text: $email)
+                    .foregroundColor(.primary)
+                    .frame(height: 44)
+                    .padding(.horizontal, 12)
+                    .background(.secondary.opacity(0.1))
+                    .cornerRadius(4.0)
                 SecureField("Password", text: $password)
+                    .foregroundColor(.primary)
+                    .frame(height: 44)
+                    .padding(.horizontal, 12)
+                    .background(.secondary.opacity(0.1))
+                    .cornerRadius(4.0)
                 Button("Log in") {
                     login()
                 }
@@ -55,6 +65,7 @@ struct LoginView: View {
             .clipShape(Capsule())
         }
     }
+    
     func login() {
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
             if error != nil {
