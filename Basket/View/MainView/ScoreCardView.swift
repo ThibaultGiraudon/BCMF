@@ -1,5 +1,5 @@
 //
-//  CardView.swift
+//  ScoreCardView.swift
 //  Basket
 //
 //  Created by Thibault Giraudon on 22/12/2023.
@@ -8,7 +8,7 @@
 import SwiftUI
 import SDWebImageSwiftUI
 
-struct CardView: View {
+struct ScoreCardView: View {
     var planning: Planning
     var body: some View {
         ZStack {
@@ -36,7 +36,7 @@ struct CardView: View {
     }
 }
 
-struct CardView_Previews: PreviewProvider {
+struct ScoreCardView_Previews: PreviewProvider {
     static var previews: some View {
         let planning = Planning(date: Date.now, 
                                 hour: Date.now,
@@ -45,6 +45,6 @@ struct CardView_Previews: PreviewProvider {
                                 result: "03-03", image1: "https://firebasestorage.googleapis.com/v0/b/bcmf-d3d8a.appspot.com/o/bcmf%402x.jpg?alt=media&token=2bf8f095-5f3b-4d33-a4e8-2ef67583e190",
                                 image2: "https://firebasestorage.googleapis.com/v0/b/bcmf-d3d8a.appspot.com/o/al-neulise.jpg?alt=media&token=a22baa09-cc7d-4def-a0f7-b0d62fa823ca",
                                 sort: 11)
-        CardView(planning: planning)
+        ScoreCardView(planning: planning)
     }
 }

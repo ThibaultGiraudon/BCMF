@@ -19,7 +19,7 @@ struct CardListView: View {
     var body: some View {
         TabView(selection: $currentIndex) {
             ForEach(filteredPlannings.indices, id: \.self) { index in
-                CardView(planning: filteredPlannings[index])
+                ScoreCardView(planning: filteredPlannings[index])
             }
         }
         .tabViewStyle(.page(indexDisplayMode: .never))

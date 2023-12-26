@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		110242FF2B3888FC00BAF97A /* FirebasePhotoGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110242FE2B3888FC00BAF97A /* FirebasePhotoGallery.swift */; };
 		1121952E2B35996600D5253A /* CardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1121952D2B35996600D5253A /* CardListView.swift */; };
-		112195302B3599A900D5253A /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1121952F2B3599A900D5253A /* CardView.swift */; };
+		112195302B3599A900D5253A /* ScoreCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1121952F2B3599A900D5253A /* ScoreCardView.swift */; };
 		112195322B359CAC00D5253A /* SliderIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112195312B359CAC00D5253A /* SliderIndicatorView.swift */; };
 		119508FF2B37039D00B35951 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119508FE2B37039D00B35951 /* MainView.swift */; };
-		119509012B37105900B35951 /* EventCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119509002B37105900B35951 /* EventCardView.swift */; };
+		119509012B37105900B35951 /* EventListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119509002B37105900B35951 /* EventListView.swift */; };
 		119509042B3711F400B35951 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119509032B3711F400B35951 /* Event.swift */; };
 		119509062B37135600B35951 /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119509052B37135600B35951 /* EventViewModel.swift */; };
 		119509082B37179E00B35951 /* EventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119509072B37179E00B35951 /* EventsViewModel.swift */; };
@@ -59,10 +59,10 @@
 /* Begin PBXFileReference section */
 		110242FE2B3888FC00BAF97A /* FirebasePhotoGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebasePhotoGallery.swift; sourceTree = "<group>"; };
 		1121952D2B35996600D5253A /* CardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListView.swift; sourceTree = "<group>"; };
-		1121952F2B3599A900D5253A /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		1121952F2B3599A900D5253A /* ScoreCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreCardView.swift; sourceTree = "<group>"; };
 		112195312B359CAC00D5253A /* SliderIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderIndicatorView.swift; sourceTree = "<group>"; };
 		119508FE2B37039D00B35951 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		119509002B37105900B35951 /* EventCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCardView.swift; sourceTree = "<group>"; };
+		119509002B37105900B35951 /* EventListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
 		119509032B3711F400B35951 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		119509052B37135600B35951 /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
 		119509072B37179E00B35951 /* EventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModel.swift; sourceTree = "<group>"; };
@@ -121,12 +121,14 @@
 		117E57A12B3AE18700610CBC /* MainView */ = {
 			isa = PBXGroup;
 			children = (
-				112195312B359CAC00D5253A /* SliderIndicatorView.swift */,
 				1121952D2B35996600D5253A /* CardListView.swift */,
-				119508FE2B37039D00B35951 /* MainView.swift */,
-				119509002B37105900B35951 /* EventCardView.swift */,
-				11F0E4842B397FF6002B754C /* MatchCardView.swift */,
 				1195090B2B3718B000B35951 /* EventEditView.swift */,
+				119509002B37105900B35951 /* EventListView.swift */,
+				110242FE2B3888FC00BAF97A /* FirebasePhotoGallery.swift */,
+				119508FE2B37039D00B35951 /* MainView.swift */,
+				11F0E4842B397FF6002B754C /* MatchCardView.swift */,
+				1121952F2B3599A900D5253A /* ScoreCardView.swift */,
+				112195312B359CAC00D5253A /* SliderIndicatorView.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -135,8 +137,8 @@
 			isa = PBXGroup;
 			children = (
 				119509032B3711F400B35951 /* Event.swift */,
-				119509052B37135600B35951 /* EventViewModel.swift */,
 				119509072B37179E00B35951 /* EventsViewModel.swift */,
+				119509052B37135600B35951 /* EventViewModel.swift */,
 			);
 			path = EventModel;
 			sourceTree = "<group>";
@@ -179,13 +181,13 @@
 		CEAE66FC29ACA5B1001C4BFF /* Basket */ = {
 			isa = PBXGroup;
 			children = (
-				CE4A40E429B621B2009E2C70 /* GoogleService-Info.plist */,
-				CEAE66FD29ACA5B1001C4BFF /* BasketApp.swift */,
-				CEAE671329ACB64F001C4BFF /* View */,
 				CEAE670129ACA5B2001C4BFF /* Assets.xcassets */,
-				CEAE670329ACA5B2001C4BFF /* Preview Content */,
-				CEAE671429ACB662001C4BFF /* Model */,
 				CE67D6112A9CD24C00F024EF /* Auth0.plist */,
+				CEAE66FD29ACA5B1001C4BFF /* BasketApp.swift */,
+				CE4A40E429B621B2009E2C70 /* GoogleService-Info.plist */,
+				CEAE671429ACB662001C4BFF /* Model */,
+				CEAE670329ACA5B2001C4BFF /* Preview Content */,
+				CEAE671329ACB64F001C4BFF /* View */,
 			);
 			path = Basket;
 			sourceTree = "<group>";
@@ -208,8 +210,6 @@
 				CEBD6B2229B22FF300120448 /* Ranking */,
 				CEBD6B2329B2302100120448 /* Menu */,
 				CE67D6132A9D218000F024EF /* Login */,
-				1121952F2B3599A900D5253A /* CardView.swift */,
-				110242FE2B3888FC00BAF97A /* FirebasePhotoGallery.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -387,7 +387,7 @@
 				CEBD6B2929B24AB400120448 /* PlanningTitleView.swift in Sources */,
 				CEAE673229AE4BCA001C4BFF /* Date.swift in Sources */,
 				CEF567192AAF3F74005D4ABC /* SwipeableView.swift in Sources */,
-				119509012B37105900B35951 /* EventCardView.swift in Sources */,
+				119509012B37105900B35951 /* EventListView.swift in Sources */,
 				119509042B3711F400B35951 /* Event.swift in Sources */,
 				112195322B359CAC00D5253A /* SliderIndicatorView.swift in Sources */,
 				CEAE670E29ACB329001C4BFF /* Player.swift in Sources */,
@@ -399,7 +399,7 @@
 				119508FF2B37039D00B35951 /* MainView.swift in Sources */,
 				CEAE66FE29ACA5B1001C4BFF /* BasketApp.swift in Sources */,
 				CE7B4A142A9A599500562DAA /* RankingEditView.swift in Sources */,
-				112195302B3599A900D5253A /* CardView.swift in Sources */,
+				112195302B3599A900D5253A /* ScoreCardView.swift in Sources */,
 				CEAC87352A98F70C00F7BBE3 /* PlayersViewModel.swift in Sources */,
 				CEAE672129ACE210001C4BFF /* Club.swift in Sources */,
 				CEBD6B2129B2219E00120448 /* RankingTitle.swift in Sources */,

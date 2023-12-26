@@ -9,7 +9,7 @@ import SwiftUI
 import EventKit
 import SDWebImageSwiftUI
 
-struct EventCardView: View {
+struct EventListView: View {
     @StateObject var viewModel = EventsViewModel()
     @StateObject var vm = EventViewModel()
     @State private var filter: FilterType?
@@ -189,6 +189,6 @@ struct EventCardView: View {
 
 #Preview {
     List {
-        EventCardView()
+        EventListView()
     }
 }

@@ -24,7 +24,7 @@ struct MainView: View {
                     }
                 }
             }
-            EventCardView()
+            EventListView()
         }
         .listStyle(.inset)
     }
