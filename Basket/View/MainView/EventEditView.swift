@@ -47,6 +47,13 @@ struct EventEditView: View {
     @State private var saveSuccess = false
     @State private var selectedImage: URL?
     let maxPhotosToSelect = 1
+    private var ranks = ["LF1", "LF2", "N1", "N2", "N3", "R1", "R2", "R3", "R4", "D1", "D2", "D3", "D4"]
+    private var groups = "ABCDEF"
+    @State private var selectedRank = "LF2"
+    @State private var selectedDay = 1
+    @State private var selectedGroup = "A"
+    @State private var score1 = ""
+    @State private var score2 = ""
     private var types = ["match", "autre"]
     var mode: Mode = .new
     
@@ -59,13 +66,28 @@ struct EventEditView: View {
                 }
             }
             .pickerStyle(.inline)
-            TextField("Titre", text: $viewModel.title)
-            TextField("Description", text: $viewModel.description)
             DatePicker("Date", selection: $viewModel.date, displayedComponents: [.date])
             DatePicker("Heure", selection: $viewModel.date, displayedComponents: [.hourAndMinute])
             if viewModel.type == "match" {
+                Picker("Niveau", selection: $selectedRank) {
+                    ForEach(ranks, id: \.self) { rank in
+                            Text(rank)
+                    }
+                }
+                Picker("Journée", selection: $selectedDay) {
+                    ForEach(1..<23) { index in
+                            Text("\(index)")
+                    }
+                }
+                Picker("Groupe", selection: $selectedGroup) {
+                    ForEach(Array(groups), id: \.self) { char in
+                            Text(String(char))
+                    }
+                }
                 VStack(alignment: .leading) {
-                    TextField("Equipe 1", text: $viewModel.team1_name)
+                    TextField("Domicile", text: $viewModel.team1_name)
+                    TextField("Score domicile", text: $score1)
+                        .keyboardType(.numberPad)
                     if !viewModel.team1_image.isEmpty {
                         WebImage(url: URL(string: viewModel.team1_image))
                             .resizable()
@@ -77,7 +99,7 @@ struct EventEditView: View {
                     Button{
                         showPhotoPicker1.toggle()
                     } label: {
-                        Text("Logo equipe 1")
+                        Text("Logo domicile")
                     }
                     .sheet(isPresented: $showPhotoPicker1, content: {
                         NavigationStack {
@@ -92,7 +114,9 @@ struct EventEditView: View {
                     })
                 }
                 VStack(alignment: .leading) {
-                    TextField("Equipe 2", text: $viewModel.team2_name)
+                    TextField("Visiteur", text: $viewModel.team2_name)
+                    TextField("Score visiteur", text: $score2)
+                        .keyboardType(.numberPad)
                     if !viewModel.team2_image.isEmpty {
                         WebImage(url: URL(string: viewModel.team2_image))
                             .resizable()
@@ -104,7 +128,7 @@ struct EventEditView: View {
                     Button{
                         showPhotoPicker2.toggle()
                     } label: {
-                        Text("Logo equipe 2")
+                        Text("Logo visiteur")
                     }
                     .sheet(isPresented: $showPhotoPicker2, content: {
                         NavigationStack {
@@ -164,6 +188,11 @@ struct EventEditView: View {
                 if (((viewModel.type == "autre" && isUploaded == true ||
                      (viewModel.type == "match" && !viewModel.team1_image.isEmpty && !viewModel.team2_image.isEmpty)) && !viewModel.title.isEmpty && !viewModel.type.isEmpty && !viewModel.description.isEmpty)){
                     do {
+                        viewModel.info = selectedRank + ", Journée " + String(selectedDay + 1)
+                        viewModel.info += ", Group " + String(selectedGroup)
+                        viewModel.score = score1 + " - " + score2
+                        viewModel.title = viewModel.team1_name + " vs " + viewModel.team2_name
+                        print(viewModel.info)
                         try viewModel.save()
                         viewModel.clear()
                     } catch {}

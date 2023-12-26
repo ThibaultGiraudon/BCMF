@@ -10,6 +10,11 @@ import SwiftUI
 struct PlanningEditView: View {
     @Environment(\.presentationMode) private var presentationMode
     @State var presentActionSheet = false
+    @State private var ranks = ["LF1", "LF2", "N1", "N2", "N3", "R1", "R2", "R3", "R4", "D1", "D2", "D3", "D4"]
+    @State private var groups = "ABCDEF"
+    @State private var selectedRank = "LF2"
+    @State private var selectedDay = 1
+    @State private var selectedGroup = "A"
     @StateObject var viewModel = PlanningViewModel()
     var mode: Mode = .new
     
@@ -19,9 +24,24 @@ struct PlanningEditView: View {
                 TextField("Equipe 1", text: $viewModel.planning.team1)
                 TextField("Equipe 2", text: $viewModel.planning.team2)
                 DatePicker("Date", selection: $viewModel.planning.date, displayedComponents: [.date])
-                DatePicker("Heure", selection: $viewModel.planning.hour, displayedComponents: [.hourAndMinute])
+                DatePicker("Heure", selection: $viewModel.planning.date, displayedComponents: [.hourAndMinute])
                 TextField("Resultat", text: $viewModel.planning.result)
                 TextField("Ordre", value: $viewModel.planning.sort, formatter: NumberFormatter())
+                Picker("Niveau", selection: $selectedRank) {
+                    ForEach(ranks, id: \.self) { rank in
+                            Text(rank)
+                    }
+                }
+                Picker("Journée", selection: $selectedDay) {
+                    ForEach(1..<23) { index in
+                            Text("\(index)")
+                    }
+                }
+                Picker("Groupe", selection: $selectedGroup) {
+                    ForEach(Array(groups), id: \.self) { char in
+                            Text(String(char))
+                    }
+                }
             }
             if mode == .edit {
                 Section {
@@ -39,7 +59,12 @@ struct PlanningEditView: View {
             Text("Cancel")
             },
         trailing:
-            Button(action: { self.handleDoneTapped() }) {
+            Button{
+                self.handleDoneTapped()
+                viewModel.planning.description = selectedRank + ", Journée " + String(selectedDay + 1)
+                viewModel.planning.description += ", Group " + String(selectedGroup)
+                print(viewModel.planning.description)
+            } label: {
                 Text(mode == .new ? "Done" : "Save")
             }
             .disabled(!viewModel.modified)
@@ -78,8 +103,9 @@ struct PlanningEditView_Previews: PreviewProvider {
             team1: "12",
             team2: "12",
             result: "12-12",
-            image1: "https://firebasestorage.googleapis.com/v0/b/bcmf-d3d8a.appspot.com/o/bcmf%402x.jpg?alt=media&token=2bf8f095-5f3b-4d33-a4e8-2ef67583e190",
+            image1: "https://firebasestorage.googleapis.com/v0/b/bcmf-d3d8a.appspot.com/o/logo-teams%2Fbcmf-modified.png?alt=media&token=0ca00941-e9fe-458d-90e4-0ef195432d59",
             image2: "",
+            description: "LF2, Journée 11, Group A",
             sort: 12
         )
         let planningViewModel = PlanningViewModel(planning: planning)

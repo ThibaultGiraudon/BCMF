@@ -18,6 +18,7 @@ struct Planning: Hashable, Codable, Identifiable {
     var result: String
     var image1: String
     var image2: String
+    var description: String
     var sort: Int
     
     enum CodingKeys: String, CodingKey {
@@ -29,6 +30,7 @@ struct Planning: Hashable, Codable, Identifiable {
         case result
         case image1
         case image2
+        case description
         case sort
     }
 }

@@ -11,6 +11,8 @@
 		1121952E2B35996600D5253A /* CardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1121952D2B35996600D5253A /* CardListView.swift */; };
 		112195302B3599A900D5253A /* ScoreCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1121952F2B3599A900D5253A /* ScoreCardView.swift */; };
 		112195322B359CAC00D5253A /* SliderIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112195312B359CAC00D5253A /* SliderIndicatorView.swift */; };
+		117394A02B3B190A00218495 /* RankCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1173949F2B3B190A00218495 /* RankCardView.swift */; };
+		117394A22B3B1E0900218495 /* RankListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117394A12B3B1E0900218495 /* RankListView.swift */; };
 		119508FF2B37039D00B35951 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119508FE2B37039D00B35951 /* MainView.swift */; };
 		119509012B37105900B35951 /* EventListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119509002B37105900B35951 /* EventListView.swift */; };
 		119509042B3711F400B35951 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119509032B3711F400B35951 /* Event.swift */; };
@@ -61,6 +63,8 @@
 		1121952D2B35996600D5253A /* CardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListView.swift; sourceTree = "<group>"; };
 		1121952F2B3599A900D5253A /* ScoreCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreCardView.swift; sourceTree = "<group>"; };
 		112195312B359CAC00D5253A /* SliderIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderIndicatorView.swift; sourceTree = "<group>"; };
+		1173949F2B3B190A00218495 /* RankCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankCardView.swift; sourceTree = "<group>"; };
+		117394A12B3B1E0900218495 /* RankListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankListView.swift; sourceTree = "<group>"; };
 		119508FE2B37039D00B35951 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		119509002B37105900B35951 /* EventListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
 		119509032B3711F400B35951 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -129,6 +133,8 @@
 				11F0E4842B397FF6002B754C /* MatchCardView.swift */,
 				1121952F2B3599A900D5253A /* ScoreCardView.swift */,
 				112195312B359CAC00D5253A /* SliderIndicatorView.swift */,
+				1173949F2B3B190A00218495 /* RankCardView.swift */,
+				117394A12B3B1E0900218495 /* RankListView.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -203,13 +209,13 @@
 		CEAE671329ACB64F001C4BFF /* View */ = {
 			isa = PBXGroup;
 			children = (
-				117E57A12B3AE18700610CBC /* MainView */,
-				CEAE66FF29ACA5B1001C4BFF /* ContentView.swift */,
-				CEBD6B2429B230CB00120448 /* Player */,
 				CEBD6B2529B2312400120448 /* Calendar */,
-				CEBD6B2229B22FF300120448 /* Ranking */,
-				CEBD6B2329B2302100120448 /* Menu */,
+				CEAE66FF29ACA5B1001C4BFF /* ContentView.swift */,
 				CE67D6132A9D218000F024EF /* Login */,
+				117E57A12B3AE18700610CBC /* MainView */,
+				CEBD6B2329B2302100120448 /* Menu */,
+				CEBD6B2429B230CB00120448 /* Player */,
+				CEBD6B2229B22FF300120448 /* Ranking */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -379,8 +385,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				117394A22B3B1E0900218495 /* RankListView.swift in Sources */,
 				CEAE670029ACA5B1001C4BFF /* ContentView.swift in Sources */,
 				CE7B4A162A9A658B00562DAA /* PlanningsViewModel.swift in Sources */,
+				117394A02B3B190A00218495 /* RankCardView.swift in Sources */,
 				110242FF2B3888FC00BAF97A /* FirebasePhotoGallery.swift in Sources */,
 				CEAE671D29ACDAF6001C4BFF /* RankingView.swift in Sources */,
 				CE7B4A0C2A9A3F3100562DAA /* PlayerRowView.swift in Sources */,

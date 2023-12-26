@@ -8,34 +8,40 @@
 import SwiftUI
 
 struct CardListView: View {
-    @ObservedObject private var viewModel = PlanningsViewModel()
+    @ObservedObject private var viewModel = EventsViewModel()
     @State private var currentIndex: Int = 0
-    
-    // Filtered plannings with a result different from "-"
-    private var filteredPlannings: [Planning] {
-        return viewModel.plannings.filter { $0.result != "-" }
+
+    private var filteredEvents: [Event] {
+        return viewModel.events.filter { $0.score != "0 - 0" }
     }
     
     var body: some View {
         TabView(selection: $currentIndex) {
-            ForEach(filteredPlannings.indices, id: \.self) { index in
-                ScoreCardView(planning: filteredPlannings[index])
+            ForEach(filteredEvents.indices, id: \.self) { index in
+                NavigationLink {
+//                    PlanningEditView(viewModel: PlanningViewModel(planning: filteredEvents[index]), mode: .edit)
+                } label: {
+                    MatchCardView(event: filteredEvents[index])
+                        .foregroundStyle(.black)
+                }
             }
         }
         .tabViewStyle(.page(indexDisplayMode: .never))
         .overlay(alignment: .bottom) {
-            SliderIndicatorView(pageIndex: currentIndex, pageCount: filteredPlannings.count)
+            SliderIndicatorView(pageIndex: currentIndex, pageCount: filteredEvents.count)
         }
         .onAppear() {
-            self.viewModel.subscribe()
+            self.viewModel.listenToItems()
         }
         .cornerRadius(25.0)
     }
 }
 
 #Preview {
-    CardListView()
-        .frame(maxWidth: .infinity, maxHeight: 210)
-        .padding(.horizontal)
+    NavigationStack {
+        CardListView()
+            .frame(maxWidth: .infinity, maxHeight: 270)
+            .padding(.horizontal)
+    }
 }
 

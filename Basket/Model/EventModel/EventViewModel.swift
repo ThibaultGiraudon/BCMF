@@ -17,10 +17,12 @@ class EventViewModel: ObservableObject {
     let id: String
     @Published var type = "match"
     @Published var title = ""
+    @Published var info = ""
     @Published var team1_name = ""
     @Published var team2_name = ""
     @Published var team1_image = ""
     @Published var team2_image = ""
+    @Published var score = ""
     @Published var description = ""
     @Published var date = Date.now
     @Published var hour = Date.now
@@ -38,10 +40,12 @@ class EventViewModel: ObservableObject {
             id = item.id
             type = item.type
             title = item.title
+            info = item.info
             team1_name = item.team1_name
             team2_name = item.team2_name
             team1_image = item.team1_image
             team2_image = item.team2_image
+            score = item.score
             description = item.description
             date = item.date
             hour = item.hour
@@ -54,10 +58,12 @@ class EventViewModel: ObservableObject {
     func clear() {
         type = "match"
         title = ""
+        info = ""
         team1_name = ""
         team2_name = ""
         team1_image = ""
         team2_image = ""
+        score = ""
         description = ""
         date = Date.now
         hour = Date.now
@@ -68,15 +74,17 @@ class EventViewModel: ObservableObject {
         var item: Event
         switch formType {
         case .add:
-            item = .init(title: title, description: description, team1_name: team1_name, team2_name: team2_name, team1_image: team1_image, team2_image: team2_image, date: date, hour: hour, type: type)
+            item = .init(title: title, description: description, info: info, team1_name: team1_name, team2_name: team2_name, team1_image: team1_image, team2_image: team2_image, score: score, date: date, hour: hour, type: type)
         case .edit(let event):
             item = event
             item.type = type
             item.title = title
+            item.info = info
             item.team1_name = team1_name
             item.team2_name = team2_name
             item.team1_image = team1_image
             item.team2_image = team2_image
+            item.score = score
             item.description = description
             item.date = date
             item.hour = hour

@@ -11,11 +11,11 @@ import FirebaseFirestore
 import FirebaseStorage
 
 class EventsViewModel: ObservableObject {
-    @Published var items = [Event] ()
+    @Published var events = [Event]()
     
     @MainActor
     func listenToItems() {
-        Firestore.firestore().collection("events")
+        Firestore.firestore().collection("events").order(by: "date")
             .addSnapshotListener { snapshot, error in
                 guard let snapshot else {
                     print("Error fetching snapshot: \(error?.localizedDescription ?? "error")")
@@ -27,7 +27,7 @@ class EventsViewModel: ObservableObject {
                 }
                 
                 withAnimation {
-                    self.items = items
+                    self.events = items
                 }
             }
     }

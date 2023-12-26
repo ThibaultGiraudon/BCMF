@@ -12,6 +12,7 @@ import SwiftUI
 struct Club: Hashable, Codable, Identifiable {
     @DocumentID var id: String?
     var name: String
+    var image: String
     var pts: String
     var play: String
     var win: String
@@ -25,6 +26,7 @@ struct Club: Hashable, Codable, Identifiable {
     enum CodingKeys: String, CodingKey {
         case id
         case name
+        case image
         case pts
         case play
         case win

@@ -12,17 +12,8 @@ struct MainView: View {
     var body: some View {
         List {
             Section {
-                VStack(alignment: .center) {
-                    CardListView()
-                        .frame(height: 210)
-                    HStack {
-                        Text("Evenement")
-                            .fontWeight(.bold)
-                            .multilineTextAlignment(.leading)
-                            .padding()
-                        Spacer()
-                    }
-                }
+                RankListView()
+                    .frame(height: 320)
             }
             EventListView()
         }

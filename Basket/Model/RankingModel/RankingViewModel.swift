@@ -16,7 +16,7 @@ class RankingViewModel: ObservableObject {
   
     private var cancellables = Set<AnyCancellable>()
   
-    init(club: Club = Club(name: "", pts: "", play: "", win: "", loose: "", null: "", scored: "", taken: "", diff: "", rank: "")) {
+    init(club: Club = Club(name: "", image: "", pts: "", play: "", win: "", loose: "", null: "", scored: "", taken: "", diff: "", rank: "")) {
         self.club = club
     
         self.$club

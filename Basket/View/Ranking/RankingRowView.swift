@@ -40,7 +40,7 @@ struct RankingRowView: View {
 
 struct RankingRowView_Previews: PreviewProvider {
     static var previews: some View {
-        let club = Club(name: "Montbrison", pts: "42", play: "42", win: "42", loose: "42", null: "42", scored: "42", taken: "42", diff: "42", rank: "42")
+        let club = Club(name: "Montbrison", image:"", pts: "42", play: "42", win: "42", loose: "42", null: "42", scored: "42", taken: "42", diff: "42", rank: "42")
         RankingRowView(club: club)
     }
 }

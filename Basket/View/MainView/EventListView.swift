@@ -24,71 +24,79 @@ struct EventListView: View {
     var filteredEvents: [Event] {
         switch filter {
         case .passed:
-            return viewModel.items.filter { $0.date < Date() }
+            return viewModel.events.filter { $0.date < Date() }
         case .future:
-            return viewModel.items.filter { $0.date >= Date() }
+            return viewModel.events.filter { $0.date >= Date() }
         case .match:
-            return viewModel.items.filter { $0.type == "match" }
+            return viewModel.events.filter { $0.type == "match" }
         case .none:
-            return viewModel.items
+            return viewModel.events
         }
     }
     var body: some View {
-        Group {
-            HStack {
-                Button{
-                    filter = (filter == .passed) ? .none : .passed
-                } label: {
-                    VStack {
-                        ZStack {
-                            Circle()
-                                .frame(width: 50, height: 50)
-                                .foregroundStyle(Color(.systemGray5))
-                            Image(systemName: "gobackward")
-                                .resizable()
-                                .frame(width: 30, height: 30)
-                        }
-                        Text("Passe")
-                    }
+        Section {
+            VStack {
+                HStack {
+                    Text("Evenement")
+                        .font(.system(size: 30))
+                        .fontWeight(.bold)
+                        .padding()
+                    Spacer()
                 }
-                .foregroundStyle(filter == .passed ? .green : .black)
-                .buttonStyle(.borderless)
-                Button {
-                    filter = (filter == .future) ? .none : .future
-                } label: {
-                    VStack {
-                        ZStack {
-                            Circle()
-                                .frame(width: 50, height: 50)
-                                .foregroundStyle(Color(.systemGray5))
-                            Image(systemName: "goforward")
-                                .resizable()
-                                .frame(width: 30, height: 30)
+                HStack {
+                    Button{
+                        filter = (filter == .passed) ? .none : .passed
+                    } label: {
+                        VStack {
+                            ZStack {
+                                Circle()
+                                    .frame(width: 50, height: 50)
+                                    .foregroundStyle(Color(.systemGray5))
+                                Image(systemName: "gobackward")
+                                    .resizable()
+                                    .frame(width: 30, height: 30)
+                            }
+                            Text("Passe")
                         }
-                        Text("A venir")
                     }
-                }
-                .foregroundStyle(filter == .future ? .green : .black)
-                .buttonStyle(.borderless)
-                Button {
-                    filter = (filter == .match) ? .none : .match
-                } label: {
-                    VStack {
-                        ZStack {
-                            Circle()
-                                .frame(width: 50, height: 50)
-                                .foregroundStyle(Color(.systemGray5))
-                            Image(systemName: "basketball")
-                                .resizable()
-                                .frame(width: 30, height: 30)
+                    .foregroundStyle(filter == .passed ? .green : .black)
+                    .buttonStyle(.borderless)
+                    Button {
+                        filter = (filter == .future) ? .none : .future
+                    } label: {
+                        VStack {
+                            ZStack {
+                                Circle()
+                                    .frame(width: 50, height: 50)
+                                    .foregroundStyle(Color(.systemGray5))
+                                Image(systemName: "goforward")
+                                    .resizable()
+                                    .frame(width: 30, height: 30)
+                            }
+                            Text("A venir")
                         }
-                        Text("Match")
                     }
+                    .foregroundStyle(filter == .future ? .green : .black)
+                    .buttonStyle(.borderless)
+                    Button {
+                        filter = (filter == .match) ? .none : .match
+                    } label: {
+                        VStack {
+                            ZStack {
+                                Circle()
+                                    .frame(width: 50, height: 50)
+                                    .foregroundStyle(Color(.systemGray5))
+                                Image(systemName: "basketball")
+                                    .resizable()
+                                    .frame(width: 30, height: 30)
+                            }
+                            Text("Match")
+                        }
+                    }
+                    .foregroundStyle(filter == .match ? .green : .black)
+                    .buttonStyle(.borderless)
                 }
-                .foregroundStyle(filter == .match ? .green : .black)
-                .buttonStyle(.borderless)
             }
-            Section {
                 ForEach(filteredEvents) { event in
                     Group {
                         if (event.type == "match") {
@@ -133,7 +141,6 @@ struct EventListView: View {
                         )
                     }
                 }
-            }
         }
         .onAppear() {
             viewModel.listenToItems()
@@ -165,7 +172,7 @@ struct EventListView: View {
                 calendarEvent.title = event.title
                 calendarEvent.startDate = event.date
                 calendarEvent.endDate = event.date.addingTimeInterval(3600)
-                calendarEvent.notes = event.description
+                calendarEvent.notes = event.info
                 calendarEvent.calendar = eventStore.defaultCalendarForNewEvents
 
                 do {

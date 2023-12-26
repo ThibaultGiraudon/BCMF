@@ -39,8 +39,9 @@ struct CalendarRowView_Previews: PreviewProvider {
             team1: "MONTBRISON FEMININE BC - 2",
             team2: "IE FRAISSE-UNIEUX BASKET 42 - 2",
             result: "03-03",
-            image1: "https://firebasestorage.googleapis.com/v0/b/bcmf-d3d8a.appspot.com/o/bcmf%402x.jpg?alt=media&token=2bf8f095-5f3b-4d33-a4e8-2ef67583e190",
+            image1: "https://firebasestorage.googleapis.com/v0/b/bcmf-d3d8a.appspot.com/o/logo-teams%2Fbcmf-modified.png?alt=media&token=0ca00941-e9fe-458d-90e4-0ef195432d59",
             image2: "",
+            description: "",
             sort: 11
         )
         return PlanningRowView(planning: planning)
