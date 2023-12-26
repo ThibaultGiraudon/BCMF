@@ -143,8 +143,6 @@ struct EventListView: View {
     
 
     private func checkCalendarAuthorization() {
-        print("Demande d'acces au calendrier")
-
         switch EKEventStore.authorizationStatus(for: .event) {
         case .authorized, .writeOnly:
             isAuthorized = true
@@ -165,9 +163,8 @@ struct EventListView: View {
                 isAuthorized = true
                 let calendarEvent = EKEvent(eventStore: eventStore)
                 calendarEvent.title = event.title
-                // TODO mettre date et time ensemble
                 calendarEvent.startDate = event.date
-                calendarEvent.endDate = event.date.addingTimeInterval(3600) // 1 heure
+                calendarEvent.endDate = event.date.addingTimeInterval(3600)
                 calendarEvent.notes = event.description
                 calendarEvent.calendar = eventStore.defaultCalendarForNewEvents
 
