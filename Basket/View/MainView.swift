@@ -10,20 +10,23 @@ import SwiftUI
 struct MainView: View {
     @StateObject var viewModel = EventsViewModel()
     var body: some View {
-        ScrollView {
-            VStack(alignment: .center) {
-                CardListView()
-                    .frame(height: 210)
-                HStack {
-                    Text("Evenement")
-                        .fontWeight(.bold)
-                        .multilineTextAlignment(.leading)
-                        .padding()
-                    Spacer()
+        List {
+            Section {
+                VStack(alignment: .center) {
+                    CardListView()
+                        .frame(height: 210)
+                    HStack {
+                        Text("Evenement")
+                            .fontWeight(.bold)
+                            .multilineTextAlignment(.leading)
+                            .padding()
+                        Spacer()
+                    }
                 }
-                EventCardView()
             }
+            EventCardView()
         }
+        .listStyle(.inset)
     }
 }
 

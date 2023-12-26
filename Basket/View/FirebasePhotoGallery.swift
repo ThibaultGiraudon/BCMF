@@ -41,8 +41,6 @@ struct FirebasePhotoPicker: View {
 
     func fetchImagesFromFirebaseStorage() {
         let storage = Storage.storage()
-
-        // Remplacez "your-path" par le chemin réel dans votre stockage Firebase où vous avez stocké vos images.
         let storageRef = storage.reference().child("logo-teams")
         storageRef.listAll { (result, error) in
             if let error = error {

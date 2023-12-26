@@ -62,9 +62,10 @@ struct EventEditView: View {
             TextField("Titre", text: $viewModel.title)
             TextField("Description", text: $viewModel.description)
             DatePicker("Date", selection: $viewModel.date, displayedComponents: [.date])
-            DatePicker("Heure", selection: $viewModel.hour, displayedComponents: [.hourAndMinute])
+            DatePicker("Heure", selection: $viewModel.date, displayedComponents: [.hourAndMinute])
             if viewModel.type == "match" {
-                VStack {
+                VStack(alignment: .leading) {
+                    TextField("Equipe 1", text: $viewModel.team1_name)
                     if !viewModel.team1_image.isEmpty {
                         WebImage(url: URL(string: viewModel.team1_image))
                             .resizable()
@@ -90,7 +91,8 @@ struct EventEditView: View {
                         }
                     })
                 }
-                VStack {
+                VStack(alignment: .leading) {
+                    TextField("Equipe 2", text: $viewModel.team2_name)
                     if !viewModel.team2_image.isEmpty {
                         WebImage(url: URL(string: viewModel.team2_image))
                             .resizable()
@@ -163,6 +165,7 @@ struct EventEditView: View {
                      (viewModel.type == "match" && !viewModel.team1_image.isEmpty && !viewModel.team2_image.isEmpty)) && !viewModel.title.isEmpty && !viewModel.type.isEmpty && !viewModel.description.isEmpty)){
                     do {
                         try viewModel.save()
+                        viewModel.clear()
                     } catch {}
                     saveSuccess = true
                 }
@@ -185,7 +188,7 @@ struct EventEditView: View {
                 Button("OK", role: .cancel) { }
             }
         }
-        .onChange(of: vm.selectedPhotos) { _ in
+        .onChange(of: vm.selectedPhotos) { _, _ in
             vm.convertDataToImage()
         }
     }

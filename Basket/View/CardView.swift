@@ -27,7 +27,7 @@ struct CardView: View {
                 else {
                     Text(planning.result)
                 }
-                WebImage(url: URL(string: planning.image1))
+                WebImage(url: URL(string: planning.image2))
                     .resizable()
                     .frame(width: 100, height: 100)
                     .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)

@@ -17,6 +17,8 @@ class EventViewModel: ObservableObject {
     let id: String
     @Published var type = "match"
     @Published var title = ""
+    @Published var team1_name = ""
+    @Published var team2_name = ""
     @Published var team1_image = ""
     @Published var team2_image = ""
     @Published var description = ""
@@ -36,6 +38,8 @@ class EventViewModel: ObservableObject {
             id = item.id
             type = item.type
             title = item.title
+            team1_name = item.team1_name
+            team2_name = item.team2_name
             team1_image = item.team1_image
             team2_image = item.team2_image
             description = item.description
@@ -47,15 +51,30 @@ class EventViewModel: ObservableObject {
         }
     }
     
+    func clear() {
+        type = "match"
+        title = ""
+        team1_name = ""
+        team2_name = ""
+        team1_image = ""
+        team2_image = ""
+        description = ""
+        date = Date.now
+        hour = Date.now
+        imageURL = URL(string: "")
+    }
+    
     func save() throws {
         var item: Event
         switch formType {
         case .add:
-            item = .init(title: title, description: description, team1_image: team1_image, team2_image: team2_image, date: date, hour: hour, type: type)
+            item = .init(title: title, description: description, team1_name: team1_name, team2_name: team2_name, team1_image: team1_image, team2_image: team2_image, date: date, hour: hour, type: type)
         case .edit(let event):
             item = event
             item.type = type
             item.title = title
+            item.team1_name = team1_name
+            item.team2_name = team2_name
             item.team1_image = team1_image
             item.team2_image = team2_image
             item.description = description
@@ -100,6 +119,15 @@ class EventViewModel: ObservableObject {
             print("Successfully download url \(self.imageURL?.absoluteString ?? "Fail")")
         } catch {
             self.error = error.localizedDescription
+        }
+    }
+    
+    @MainActor
+    func deleteItem(_ id: String) async throws {
+        do {
+            try await db.document("events/\(id)").delete()
+        } catch {
+            throw error
         }
     }
 }

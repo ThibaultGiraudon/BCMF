@@ -13,6 +13,8 @@ struct Event: Equatable, Codable, Identifiable {
     
     var title: String
     var description: String
+    var team1_name: String
+    var team2_name: String
     var team1_image: String
     var team2_image: String
     var date: Date

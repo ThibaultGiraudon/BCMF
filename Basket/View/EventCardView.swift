@@ -6,11 +6,16 @@
 //
 
 import SwiftUI
+import EventKit
 import SDWebImageSwiftUI
 
 struct EventCardView: View {
     @StateObject var viewModel = EventsViewModel()
+    @StateObject var vm = EventViewModel()
     @State private var filter: FilterType?
+    @State private var isAuthorized = false
+    @State private var showAlert = false
+    @State private var added = false
 
     enum FilterType {
         case passed, future, match
@@ -29,15 +34,10 @@ struct EventCardView: View {
         }
     }
     var body: some View {
-        VStack {
+        Group {
             HStack {
                 Button{
-                    if filter == .passed {
-                        filter = .none
-                    }
-                    else {
-                        filter = .passed
-                    }
+                    filter = (filter == .passed) ? .none : .passed
                 } label: {
                     VStack {
                         ZStack {
@@ -50,15 +50,11 @@ struct EventCardView: View {
                         }
                         Text("Passe")
                     }
-                    .foregroundStyle(filter == .passed ? .green : .black)
                 }
+                .foregroundStyle(filter == .passed ? .green : .black)
+                .buttonStyle(.borderless)
                 Button {
-                    if filter == .future {
-                        filter = .none
-                    }
-                    else {
-                        filter = .future
-                    }
+                    filter = (filter == .future) ? .none : .future
                 } label: {
                     VStack {
                         ZStack {
@@ -71,15 +67,11 @@ struct EventCardView: View {
                         }
                         Text("A venir")
                     }
-                    .foregroundStyle(filter == .future ? .green : .black)
                 }
+                .foregroundStyle(filter == .future ? .green : .black)
+                .buttonStyle(.borderless)
                 Button {
-                    if filter == .match {
-                        filter = .none
-                    }
-                    else {
-                        filter = .match
-                    }
+                    filter = (filter == .match) ? .none : .match
                 } label: {
                     VStack {
                         ZStack {
@@ -92,38 +84,111 @@ struct EventCardView: View {
                         }
                         Text("Match")
                     }
-                    .foregroundStyle(filter == .match ? .green : .black)
                 }
+                .foregroundStyle(filter == .match ? .green : .black)
+                .buttonStyle(.borderless)
             }
-            ForEach(filteredEvents) { event in
-                if (event.type == "match") {
-                    HStack {
-                        WebImage(url: URL(string: event.team1_image))
-                            .resizable()
-                            .frame(width: 100, height: 100)
-                            .clipShape(Circle())
-                        Text("VS")
-                        WebImage(url: URL(string: event.team2_image))
-                            .resizable()
-                            .frame(width: 100, height: 100)
-                            .clipShape(Circle())
+            Section {
+                ForEach(filteredEvents) { event in
+                    Group {
+                        if (event.type == "match") {
+                            MatchCardView(event: event)
+                        }
+                        else {
+                            if let image = event.image {
+                                WebImage(url: URL(string: image))
+                                    .resizable()
+                                    .frame(width: 300, height: 300)
+                            }
+                        }
                     }
-                }
-                else {
-                    if let image = event.image {
-                        WebImage(url: URL(string: image))
-                            .resizable()
-                            .frame(width: 300, height: 300)
+                    .swipeActions(edge: .trailing) {
+                        Button("Supprimer") {
+                            Task {
+                                do {
+                                    try await vm.deleteItem(event.id)
+                                    print("Event deleted")
+                                } catch {
+                                    vm.error = error.localizedDescription
+                                }
+                            }
+                        }
+                        .tint(.red)
+                    }
+                    .swipeActions(edge: .leading) {
+                        Button("Ajouter au calendrier") {
+                            requestCalendarAccess(event)
+                        }
+                        .tint(.green)
+                    }
+                    .alert("Evenenent ajouté au calendrier avec succes", isPresented: $added) {
+                        Button("Ok", role: .cancel) { added = false}
+                    }
+                    .alert(isPresented: $showAlert) {
+                        Alert(
+                            title: Text("Accès refusé"),
+                            message: Text("Vous avez refusé l'accès au calendrier. Pour autoriser l'accès, veuillez accéder aux paramètres de l'application."),
+                            primaryButton: .default(Text("OK")),
+                            secondaryButton: .cancel()
+                        )
                     }
                 }
             }
         }
         .onAppear() {
             viewModel.listenToItems()
+            checkCalendarAuthorization()
+        }
+    }
+    
+
+    private func checkCalendarAuthorization() {
+        print("Demande d'acces au calendrier")
+
+        switch EKEventStore.authorizationStatus(for: .event) {
+        case .authorized, .writeOnly:
+            isAuthorized = true
+        case .denied, .restricted, .notDetermined:
+            isAuthorized = false
+        case .fullAccess:
+            isAuthorized = true
+        @unknown default:
+            isAuthorized = false
+        }
+    }
+
+    private func requestCalendarAccess(_ event: Event) {
+        let eventStore = EKEventStore()
+
+        eventStore.requestWriteOnlyAccessToEvents() { (granted, error) in
+            if granted && error == nil {
+                isAuthorized = true
+                let calendarEvent = EKEvent(eventStore: eventStore)
+                calendarEvent.title = event.title
+                // TODO mettre date et time ensemble
+                calendarEvent.startDate = event.date
+                calendarEvent.endDate = event.date.addingTimeInterval(3600) // 1 heure
+                calendarEvent.notes = event.description
+                calendarEvent.calendar = eventStore.defaultCalendarForNewEvents
+
+                do {
+                    try eventStore.save(calendarEvent, span: .thisEvent)
+                    print("Événement ajouté au calendrier avec succès.")
+                    added = true
+                } catch {
+                    print("Erreur lors de l'ajout de l'événement au calendrier: \(error.localizedDescription)")
+                }
+            } else {
+                isAuthorized = false
+                showAlert = true
+                print("L'accès au calendrier a été refusé.")
+            }
         }
     }
 }
 
 #Preview {
-    EventCardView()
+    List {
+        EventCardView()
+    }
 }
