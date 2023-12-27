@@ -22,6 +22,7 @@ struct Event: Equatable, Codable, Identifiable {
     var date: Date
     var hour: Date
     var type: String
+    var image_id: String?
     var image: String?
     var imageURL: URL? {
         guard let image else { return nil }

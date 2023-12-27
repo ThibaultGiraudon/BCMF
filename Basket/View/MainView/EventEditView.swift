@@ -35,8 +35,9 @@ class PhotoSelectorViewModel: ObservableObject {
 }
 
 struct EventEditView: View {
-    @Environment(\.dismiss) private var dismiss
-    @StateObject var viewModel = EventViewModel()
+    @StateObject var viewModel: EventViewModel
+    @Environment(\.dismiss)var dismiss
+    
     @StateObject var vm = PhotoSelectorViewModel()
     @State private var isUploaded = false
     @State private var showAlertImage = false
@@ -48,14 +49,17 @@ struct EventEditView: View {
     @State private var selectedImage: URL?
     let maxPhotosToSelect = 1
     private var ranks = ["LF1", "LF2", "N1", "N2", "N3", "R1", "R2", "R3", "R4", "D1", "D2", "D3", "D4"]
-    private var groups = "ABCDEF"
+    private var groups = ["A", "B", "C", "D", "E", "F"]
     @State private var selectedRank = "LF2"
-    @State private var selectedDay = 1
+    @State private var selectedDay = 0
     @State private var selectedGroup = "A"
     @State private var score1 = ""
     @State private var score2 = ""
     private var types = ["match", "autre"]
-    var mode: Mode = .new
+    
+    init(viewModel: EventViewModel = EventViewModel()) {
+        self._viewModel = StateObject(wrappedValue: viewModel)
+    }
     
     var body: some View {
         VStack {
@@ -80,8 +84,8 @@ struct EventEditView: View {
                     }
                 }
                 Picker("Groupe", selection: $selectedGroup) {
-                    ForEach(Array(groups), id: \.self) { char in
-                            Text(String(char))
+                    ForEach(groups, id: \.self) { char in
+                            Text(char)
                     }
                 }
                 VStack(alignment: .leading) {
@@ -144,6 +148,8 @@ struct EventEditView: View {
                 }
             }
             else {
+                TextField("Titre", text: $viewModel.title)
+                TextField("Description", text: $viewModel.description)
                 VStack {
                     if (vm.isSelected) {
                         Image(uiImage: vm.photo)
@@ -163,62 +169,73 @@ struct EventEditView: View {
             }
         }
             Spacer()
-            if viewModel.type == "autre" {
+            if case .add = viewModel.formType {
                 Button {
-                    if vm.isSelected == true {
-                        isUploaded = true
-                        Task { await viewModel.uploadImage(vm.photo) }
-                        uploadSuccess = true
+                    if ((viewModel.type == "match" && !viewModel.team1_image.isEmpty && !viewModel.team2_image.isEmpty) && !viewModel.type.isEmpty){
+                        Task {
+                            do {
+                                viewModel.info = selectedRank + ", Journée " + String(selectedDay + 1)
+                                viewModel.info += ", Group " + String(selectedGroup)
+                                viewModel.score = score1 + " - " + score2
+                                viewModel.title = viewModel.team1_name + " vs " + viewModel.team2_name
+                                try await viewModel.save()
+                                viewModel.clear()
+                                saveSuccess = true
+                            } catch {}
+                        }
+                    }
+                    else if ((viewModel.type == "autre" && !viewModel.title.isEmpty && !viewModel.description.isEmpty) && !viewModel.type.isEmpty){
+                        Task {
+                            do {
+                                viewModel.info = viewModel.description
+                                await viewModel.uploadImage(vm.photo)
+                                try await viewModel.save()
+                                viewModel.clear()
+                                saveSuccess = true
+                            } catch {}
+                        }
                     }
                     else {
-                        showAlertImage = true
+                        showAlert = true
                     }
                 } label: {
-                    Text("Televerser l'image")
-                        .foregroundStyle(.green)
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 25)
+                            .frame(width: 250, height: 50)
+                            .foregroundStyle(.green)
+                        Text("Ajouter l'evenement")
+                            .foregroundStyle(.white)
+                    }
                 }
-                .alert("Vous n'avez pas selectionne d'image", isPresented: $showAlertImage) {
+                .alert(viewModel.type == "match" ? "Pensez a remplir tous les champs" : "Pensez a televerser l'image et a remplir tous les champs", isPresented: $showAlert) {
                     Button("OK", role: .cancel) { }
                 }
-                .alert("Image televersee avec succes", isPresented: $uploadSuccess) {
+                .alert("Evenement ajoute avec succes", isPresented: $saveSuccess) {
                     Button("OK", role: .cancel) { }
                 }
-            }
-            Button {
-                if (((viewModel.type == "autre" && isUploaded == true ||
-                     (viewModel.type == "match" && !viewModel.team1_image.isEmpty && !viewModel.team2_image.isEmpty)) && !viewModel.title.isEmpty && !viewModel.type.isEmpty && !viewModel.description.isEmpty)){
-                    do {
-                        viewModel.info = selectedRank + ", Journée " + String(selectedDay + 1)
-                        viewModel.info += ", Group " + String(selectedGroup)
-                        viewModel.score = score1 + " - " + score2
-                        viewModel.title = viewModel.team1_name + " vs " + viewModel.team2_name
-                        print(viewModel.info)
-                        try viewModel.save()
-                        viewModel.clear()
-                    } catch {}
-                    saveSuccess = true
-                }
-                else {
-                    showAlert = true
-                }
-            } label: {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 25)
-                        .frame(width: 250, height: 50)
-                        .foregroundStyle(.green)
-                    Text("Ajouter l'evenement")
-                        .foregroundStyle(.white)
-                }
-            }
-            .alert(viewModel.type == "match" ? "Pensez a remplir tous les champs" : "Pensez a televerser l'image et a remplir tous les champs", isPresented: $showAlert) {
-                Button("OK", role: .cancel) { }
-            }
-            .alert("Evenement ajoute avec succes", isPresented: $saveSuccess) {
-                Button("OK", role: .cancel) { }
             }
         }
         .onChange(of: vm.selectedPhotos) { _, _ in
             vm.convertDataToImage()
+        }
+        .toolbar {
+            if case .edit = viewModel.formType {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Annuler") {
+                        dismiss()
+                    }
+                }
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Sauvegarder") {
+                        Task {
+                            do {
+                                try await viewModel.save()
+                                dismiss()
+                            } catch {}
+                        }
+                    }
+                }
+            }
         }
     }
 }

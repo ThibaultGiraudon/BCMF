@@ -11,26 +11,37 @@ import SDWebImageSwiftUI
 
 struct EventListView: View {
     @StateObject var viewModel = EventsViewModel()
+    @State var formType: FormType?
     @StateObject var vm = EventViewModel()
-    @State private var filter: FilterType?
+    @State private var filter = FilterType.future
+    @State private var presentEditView = false
     @State private var isAuthorized = false
     @State private var showAlert = false
     @State private var added = false
 
-    enum FilterType {
+    enum FilterType: String, CaseIterable, Identifiable {
         case passed, future, match
+        var name: String {
+            switch self {
+            case .passed:
+                "Passé"
+            case .future:
+                "A venir"
+            case .match:
+                "Match"
+            }
+        }
+        var id: Self { self }
     }
 
     var filteredEvents: [Event] {
         switch filter {
         case .passed:
-            return viewModel.events.filter { $0.date < Date() }
+            return viewModel.events.reversed().filter { $0.date < Date() }
         case .future:
             return viewModel.events.filter { $0.date >= Date() }
         case .match:
             return viewModel.events.filter { $0.type == "match" }
-        case .none:
-            return viewModel.events
         }
     }
     var body: some View {
@@ -43,104 +54,20 @@ struct EventListView: View {
                         .padding()
                     Spacer()
                 }
-                HStack {
-                    Button{
-                        filter = (filter == .passed) ? .none : .passed
-                    } label: {
-                        VStack {
-                            ZStack {
-                                Circle()
-                                    .frame(width: 50, height: 50)
-                                    .foregroundStyle(Color(.systemGray5))
-                                Image(systemName: "gobackward")
-                                    .resizable()
-                                    .frame(width: 30, height: 30)
-                            }
-                            Text("Passe")
-                        }
+                Picker("Filtre", selection: $filter) {
+                    ForEach(FilterType.allCases) { filter in
+                        Text(filter.name)
                     }
-                    .foregroundStyle(filter == .passed ? .green : .black)
-                    .buttonStyle(.borderless)
-                    Button {
-                        filter = (filter == .future) ? .none : .future
-                    } label: {
-                        VStack {
-                            ZStack {
-                                Circle()
-                                    .frame(width: 50, height: 50)
-                                    .foregroundStyle(Color(.systemGray5))
-                                Image(systemName: "goforward")
-                                    .resizable()
-                                    .frame(width: 30, height: 30)
-                            }
-                            Text("A venir")
-                        }
-                    }
-                    .foregroundStyle(filter == .future ? .green : .black)
-                    .buttonStyle(.borderless)
-                    Button {
-                        filter = (filter == .match) ? .none : .match
-                    } label: {
-                        VStack {
-                            ZStack {
-                                Circle()
-                                    .frame(width: 50, height: 50)
-                                    .foregroundStyle(Color(.systemGray5))
-                                Image(systemName: "basketball")
-                                    .resizable()
-                                    .frame(width: 30, height: 30)
-                            }
-                            Text("Match")
-                        }
-                    }
-                    .foregroundStyle(filter == .match ? .green : .black)
-                    .buttonStyle(.borderless)
                 }
             }
+            if filteredEvents.count == 0 {
+                Text("Aucun evenement")
+            }
+            else {
                 ForEach(filteredEvents) { event in
-                    Group {
-                        if (event.type == "match") {
-                            MatchCardView(event: event)
-                        }
-                        else {
-                            if let image = event.image {
-                                WebImage(url: URL(string: image))
-                                    .resizable()
-                                    .frame(width: 300, height: 300)
-                            }
-                        }
-                    }
-                    .swipeActions(edge: .trailing) {
-                        Button("Supprimer") {
-                            Task {
-                                do {
-                                    try await vm.deleteItem(event.id)
-                                    print("Event deleted")
-                                } catch {
-                                    vm.error = error.localizedDescription
-                                }
-                            }
-                        }
-                        .tint(.red)
-                    }
-                    .swipeActions(edge: .leading) {
-                        Button("Ajouter au calendrier") {
-                            requestCalendarAccess(event)
-                        }
-                        .tint(.green)
-                    }
-                    .alert("Evenenent ajouté au calendrier avec succes", isPresented: $added) {
-                        Button("Ok", role: .cancel) { added = false}
-                    }
-                    .alert(isPresented: $showAlert) {
-                        Alert(
-                            title: Text("Accès refusé"),
-                            message: Text("Vous avez refusé l'accès au calendrier. Pour autoriser l'accès, veuillez accéder aux paramètres de l'application."),
-                            primaryButton: .default(Text("OK")),
-                            secondaryButton: .cancel()
-                        )
-                    }
+                    EventView(event: event)
                 }
+            }
         }
         .onAppear() {
             viewModel.listenToItems()
@@ -195,4 +122,5 @@ struct EventListView: View {
     List {
         EventListView()
     }
+    .listStyle(.inset)
 }

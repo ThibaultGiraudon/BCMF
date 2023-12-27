@@ -9,37 +9,23 @@ import SwiftUI
 
 struct PlanningView: View {
     @ObservedObject private var viewModel = PlanningsViewModel()
-    @ObservedObject var gs = GlobalState.shared
-    @State var presentAddPlanningSheet = false
-    @State var presentLoginSheet = false
     
     var body: some View {
         VStack {
             PlanningTitleView()
             Divider()
             ForEach(viewModel.plannings) { planning in
-//                if gs.isAuthenticated {
-                    NavigationLink(destination : PlanningEditView(viewModel: PlanningViewModel(planning: planning), mode: .edit)) {
-                        PlanningRowView(planning: planning)
-                    }
-                    .foregroundColor(.black)
-//                }
-//                else {
-//                    PlanningRowView(planning: planning)
-//                }
+                NavigationLink(destination : PlanningEditView(viewModel: PlanningViewModel(planning: planning), mode: .edit)) {
+                    PlanningRowView(planning: planning)
+                }
+                .foregroundColor(.black)
                 Divider()
             }
         }
         .navigationTitle("Planning")
-        .sheet(isPresented: $gs.presentAddSheet) {
-            NavigationView {
-                PlanningEditView()
-            }
-        }
         .onAppear() {
             self.viewModel.subscribe()
         }
-        .preferredColorScheme(gs.isDarkMode == true ? .dark : .light)
     }
 }
 

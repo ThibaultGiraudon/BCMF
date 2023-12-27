@@ -11,7 +11,6 @@ struct PlayerDetailView: View {
     @Environment(\.dismiss) var dismiss
     @State var presentEditPlayerSheet = false
     var player: Player
-    @ObservedObject var gs = GlobalState.shared
     
     var body: some View {
         VStack {
@@ -53,9 +52,8 @@ struct PlayerDetailView: View {
         }
         .navigationBarItems(trailing:
             Button(action: {self.presentEditPlayerSheet.toggle() }) {
-                if gs.isAuthenticated == true {
-                    Text("Edit")}
-            }
+                Text("Edit")
+        }
         )
         .sheet(isPresented: self.$presentEditPlayerSheet) {
             PlayerEditView(viewModel: PlayerViewModel(player: player), mode: .edit) { result in

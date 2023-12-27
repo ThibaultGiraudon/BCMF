@@ -11,45 +11,39 @@ import FirebaseStorage
 import SDWebImageSwiftUI
 
 struct  PlayerRowView: View {
-    @ObservedObject var gs = GlobalState.shared
     @State private var path: String = "player_images/"
     @State private var imageURL: URL?
     var player: Player
     var body: some View {
-        ZStack {
-//            RoundedRectangle(cornerRadius: 16)
-//                .frame(width: UIScreen.main.bounds.width - 20, height:100)
-//                .foregroundColor(Color(UIColor.systemFill))
-            HStack {
-                WebImage(url: imageURL)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 70, height: 90, alignment: .bottom)
-                    .clipShape(Circle())
-                    .overlay(content: {
-                        Circle()
-                            .stroke()
-                            .foregroundStyle(.green)
-                    })
-                    .onAppear {
-                        let storage = Storage.storage()
-                        
-                        let storageRef = storage.reference().child(path + player.imageURL)
-                        storageRef.downloadURL { (url, error) in
-                            if let url = url {
-                                self.imageURL = url
-                            }
-                            else {
-                                print("Erreur lors du téléchargement de l'URL de l'image: \(error?.localizedDescription ?? "Erreur inconnue")")
-                            }
+        HStack {
+            WebImage(url: imageURL)
+                .resizable()
+                .scaledToFill()
+                .frame(width: 70, height: 90, alignment: .bottom)
+                .clipShape(Circle())
+                .overlay(content: {
+                    Circle()
+                        .stroke()
+                        .foregroundStyle(.green)
+                })
+                .onAppear {
+                    let storage = Storage.storage()
+                    
+                    let storageRef = storage.reference().child(path + player.imageURL)
+                    storageRef.downloadURL { (url, error) in
+                        if let url = url {
+                            self.imageURL = url
+                        }
+                        else {
+                            print("Erreur lors du téléchargement de l'URL de l'image: \(error?.localizedDescription ?? "Erreur inconnue")")
                         }
                     }
-                Text(player.name)
-                    .foregroundStyle(.black)
-                Spacer()
-            }
-            .padding(.horizontal, 20)
+                }
+            Text(player.name)
+                .foregroundStyle(.black)
+            Spacer()
         }
+        .padding(.horizontal, 20)
     }
 }
 

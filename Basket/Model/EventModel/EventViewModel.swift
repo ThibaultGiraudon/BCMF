@@ -26,10 +26,20 @@ class EventViewModel: ObservableObject {
     @Published var description = ""
     @Published var date = Date.now
     @Published var hour = Date.now
+    @Published var image_id: String?
     @Published var imageURL: URL?
     
     @Published var uploadProgress: uploadProgress?
     @Published var error: String?
+    
+    var save_button: String {
+            switch formType {
+            case .add:
+                return "Add Item"
+            case .edit:
+                return "Edit Item"
+            }
+        }
     
     init(formType: FormType = .add) {
         self.formType = formType
@@ -49,6 +59,9 @@ class EventViewModel: ObservableObject {
             description = item.description
             date = item.date
             hour = item.hour
+            if let image_id = item.image_id {
+                self.image_id = image_id
+            }
             if let imageURL = item.imageURL {
                 self.imageURL = imageURL
             }
@@ -67,10 +80,11 @@ class EventViewModel: ObservableObject {
         description = ""
         date = Date.now
         hour = Date.now
+        image_id = ""
         imageURL = URL(string: "")
     }
     
-    func save() throws {
+    func save() async throws {
         var item: Event
         switch formType {
         case .add:
@@ -90,7 +104,7 @@ class EventViewModel: ObservableObject {
             item.hour = hour
         }
         item.image = imageURL?.absoluteString
-        print("image link \(item.image ?? "fail")")
+        item.image_id = image_id
         
         do {
             try db.document("events/\(item.id)")
@@ -107,8 +121,9 @@ class EventViewModel: ObservableObject {
             
             let storage = Storage.storage()
             let storageRef = storage.reference()
-            let imageRef = storageRef.child("events/\(UUID().uuidString).jpg")
-            print("enter in uploadImage")
+            let new_id = UUID().uuidString
+            let imageRef = storageRef.child("events/\(new_id).jpg")
+            self.image_id = new_id
             
             let metadata = StorageMetadata()
             metadata.contentType = "image/jpeg"
@@ -131,9 +146,12 @@ class EventViewModel: ObservableObject {
     }
     
     @MainActor
-    func deleteItem(_ id: String) async throws {
+    func deleteItem(_ event: Event) async throws {
         do {
-            try await db.document("events/\(id)").delete()
+            try await db.document("events/\(event.id)").delete()
+            if let image_id = event.image_id {
+                try? await Storage.storage().reference().child("events/\(image_id).jpg").delete()
+            }
         } catch {
             throw error
         }

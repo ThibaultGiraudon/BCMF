@@ -9,52 +9,51 @@ import SwiftUI
 
 struct PlayerList: View {
     @ObservedObject private var viewModel = PlayersViewModel()
-    @ObservedObject var gs = GlobalState.shared
-    @State var presentAddPlayerSheet = false
-    @State var presentLoginSheet = false
-    
+    @State private var searchText = ""
+
     var body: some View {
-        ScrollView {
-            ForEach(viewModel.players) { player in
-                NavigationLink(destination: PlayerDetailView(player: player)) {
-                    PlayerRowView(player: player)
+
+        List {
+            Section {
+                TextField("Rechercher un joueur", text: $searchText)
+                    .padding()
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+            }
+            Section {
+                ForEach(filteredPlayers) { player in
+                    NavigationLink(destination: PlayerDetailView(player: player)) {
+                        PlayerRowView(player: player)
+                    }
                 }
             }
         }
-        .navigationTitle("Equipe")
-        .toolbarBackground(.green)
-        .sheet(isPresented: $gs.presentAddSheet) {
-            PlayerEditView(mode: .new)
-        }
+        .listStyle(.inset)
         .onAppear() {
             print("PlayersListView appears. Subscribing to data updates.")
             self.viewModel.subscribe()
         }
-        .preferredColorScheme(gs.isDarkMode == true ? .dark : .light)
+    }
+
+    private var filteredPlayers: [Player] {
+        if searchText.isEmpty {
+            return viewModel.players
+        } else {
+            return viewModel.players.filter { player in
+                player.name.localizedCaseInsensitiveContains(searchText)
+            }
+        }
     }
 }
 
-struct LoginButton: View {
-    var action: () -> Void
-    var body: some View {
-        Button(action: {self.action() }) {
-            Image(systemName: "person.circle")
-        }
-        .foregroundColor(.green)
-    }
-}
 
 struct AddButton: View {
-    @ObservedObject var gs = GlobalState.shared
     
     var action: () -> Void
     var body: some View {
-        if gs.isAuthenticated == true {
-            Button(action: { self.action() }) {
-                Image(systemName: "plus")
-            }
-            .foregroundColor(.green)
+        Button(action: { self.action() }) {
+            Image(systemName: "plus")
         }
+        .foregroundColor(.green)
     }
 }
 

@@ -22,43 +22,40 @@ struct MatchCardView: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 25.0)
-                            .foregroundStyle(Color(.systemGray5))
-                            .frame(width: UIScreen.main.bounds.width - 20, height: 200)
-                            .shadow(radius: 8)
-                            .clipShape(RoundedRectangle(cornerRadius: 25.0))
+                .foregroundStyle(Color(.systemGray5))
+                .frame(width: UIScreen.main.bounds.width - 20, height: 200)
+                .shadow(radius: 8)
+                .clipShape(RoundedRectangle(cornerRadius: 25.0))
 
-                        Triangle()
-                            .fill(.green)
-                            .frame(width: 270, height: 200)
-                            .offset(x: -UIScreen.main.bounds.width / 2 + 100, y: 0)
-                            .clipped()
+            Triangle()
+                .fill(.green)
+                .frame(width: 270, height: 200)
+                .offset(x: -UIScreen.main.bounds.width / 2 + 100, y: 0)
+                .clipped()
 
-                        Triangle()
-                            .fill(.green)
-                            .frame(width: 300, height: 200)
-                            .offset(x: -UIScreen.main.bounds.width / 2 + 75, y: 100)
-                            .clipped()
+            Triangle()
+                .fill(.green)
+                .frame(width: 300, height: 200)
+                .offset(x: -UIScreen.main.bounds.width / 2 + 75, y: 100)
+                .clipped()
 
-                        RoundedRectangle(cornerRadius: 25.0)
-                            .foregroundStyle(.green)
-                            .frame(width: 90, height: 200)
-                            .offset(x: -UIScreen.main.bounds.width / 2 + 55, y: 0)
+            RoundedRectangle(cornerRadius: 25.0)
+                .foregroundStyle(.green)
+                .frame(width: 90, height: 200)
+                .offset(x: -UIScreen.main.bounds.width / 2 + 55, y: 0)
             VStack {
-                HStack {
-                    Text(formattedDate)
-                }
+                Text(formattedDate)
+                Text(event.info)
                 HStack {
                     VStack {
                         WebImage(url: URL(string: event.team1_image))
                             .resizable()
                             .scaledToFit()
                             .frame(width:100)
-//                            .clipShape(Circle())
                         Text(event.team1_name)
                     }
                     if event.score != "0 - 0" {
                         Text(event.score)
-                            .fontWeight(.bold)
                             .padding(.horizontal, 30)
                     }
                     else {
@@ -71,11 +68,11 @@ struct MatchCardView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width:100)
-//                            .clipShape(Circle())
                         Text(event.team2_name)
                     }
                 }
             }
+            .fontWeight(.bold)
         }
     }
 }
