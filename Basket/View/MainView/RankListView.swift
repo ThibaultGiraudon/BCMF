@@ -8,13 +8,19 @@
 import SwiftUI
 
 struct RankListView: View {
-    @ObservedObject private var viewModel = RankingsViewModel()
+    @ObservedObject private var viewModel = ClubsViewModel()
     @State private var currentIndex: Int = 0
+    @State var formType: ClubFormType?
     
     var body: some View {
         TabView(selection: $currentIndex) {
-            ForEach(viewModel.clubs, id: \.self) { club in
+            ForEach(viewModel.clubs) { club in
+                Button {
+                    formType = .edit(club)
+                } label: {
                     RankCardView(club: club)
+                }
+                .foregroundStyle(.black)
             }
         }
         .tabViewStyle(.page(indexDisplayMode: .never))
@@ -22,12 +28,19 @@ struct RankListView: View {
             SliderIndicatorView(pageIndex: currentIndex, pageCount: viewModel.clubs.count)
         }
         .onAppear {
-            self.viewModel.subscribe()
+            self.viewModel.listenToItems()
+        }
+        .sheet(item: $formType) { type in
+            NavigationStack {
+                ClubEditView(viewModel: .init(formType: type))
+            }
         }
     }
 }
 
 #Preview {
-    RankListView()
-        .frame(maxWidth: .infinity, maxHeight: 320)
+    NavigationStack {
+        RankListView()
+            .frame(maxWidth: .infinity, maxHeight: 320)
+    }
 }

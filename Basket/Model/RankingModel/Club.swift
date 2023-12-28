@@ -9,10 +9,10 @@ import Foundation
 import FirebaseFirestoreSwift
 import SwiftUI
 
-struct Club: Hashable, Codable, Identifiable {
-    @DocumentID var id: String?
+struct Club: Equatable, Codable, Identifiable {
+    var id = UUID().uuidString
+    
     var name: String
-    var image: String
     var pts: String
     var play: String
     var win: String
@@ -22,19 +22,10 @@ struct Club: Hashable, Codable, Identifiable {
     var taken: String
     var diff: String
     var rank: String
-    
-    enum CodingKeys: String, CodingKey {
-        case id
-        case name
-        case image
-        case pts
-        case play
-        case win
-        case loose
-        case null
-        case scored
-        case taken
-        case diff
-        case rank
+    var image: String?
+    var image_id: String?
+    var imageURL: URL? {
+        guard let image else { return nil }
+        return URL(string: image)
     }
 }

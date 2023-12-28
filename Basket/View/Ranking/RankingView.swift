@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RankingView: View {
-    @ObservedObject private var viewModel = RankingsViewModel()
+    @ObservedObject private var viewModel = ClubsViewModel()
     @State var presentAddClubSheet = false
     @State var presentLoginSheet = false
     
@@ -23,7 +23,7 @@ struct RankingView: View {
         }
         .navigationTitle("Classement")
         .onAppear() {
-            self.viewModel.subscribe()
+            self.viewModel.listenToItems()
         }
     }
 }

@@ -33,10 +33,12 @@ struct RankCardView: View {
                         .background(.white)
                         .ignoresSafeArea()
                 }
-                WebImage(url: URL(string: club.image))
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width:100)
+                if let image = club.image {
+                    WebImage(url: URL(string: image))
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width:100)
+                }
                 Text(club.name)
                     .font(.system(size: 30))
                     .fontWeight(.bold)
@@ -47,6 +49,6 @@ struct RankCardView: View {
 
 #Preview {
     RankCardView(club: Club(name: "Montbrison",
-                            image:"https://firebasestorage.googleapis.com/v0/b/bcmf-d3d8a.appspot.com/o/logo-teams%2Fbcmf-modified.png?alt=media&token=0ca00941-e9fe-458d-90e4-0ef195432d59", 
-                            pts: "0", play: "0", win: "7", loose: "3", null: "0", scored: "0", taken: "0", diff: "0", rank: "1"))
+                            pts: "0", play: "0", win: "7", loose: "3", null: "0", scored: "0", taken: "0", diff: "0", rank: "1",
+                            image:"https://firebasestorage.googleapis.com/v0/b/bcmf-d3d8a.appspot.com/o/logo-teams%2Fbcmf-modified.png?alt=media&token=0ca00941-e9fe-458d-90e4-0ef195432d59"))
 }

@@ -21,6 +21,7 @@
 		1195090C2B3718B000B35951 /* EventEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1195090B2B3718B000B35951 /* EventEditView.swift */; };
 		1198038C2B3C476300EBFF0C /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1198038B2B3C476300EBFF0C /* EventView.swift */; };
 		11F0E4852B397FF6002B754C /* MatchCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F0E4842B397FF6002B754C /* MatchCardView.swift */; };
+		11F93BBB2B3D85AD00606847 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F93BBA2B3D85AD00606847 /* AddView.swift */; };
 		CE4A40DE29B61E79009E2C70 /* RankingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4A40DD29B61E79009E2C70 /* RankingViewModel.swift */; };
 		CE4A40E129B61EE7009E2C70 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CE4A40E029B61EE7009E2C70 /* FirebaseFirestore */; };
 		CE4A40E329B61EE7009E2C70 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CE4A40E229B61EE7009E2C70 /* FirebaseFirestoreSwift */; };
@@ -31,7 +32,7 @@
 		CE7B4A0E2A9A3FF400562DAA /* PlayerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B4A0D2A9A3FF400562DAA /* PlayerDetailView.swift */; };
 		CE7B4A102A9A56A600562DAA /* RankingRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B4A0F2A9A56A600562DAA /* RankingRowView.swift */; };
 		CE7B4A122A9A579900562DAA /* RankingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B4A112A9A579900562DAA /* RankingsViewModel.swift */; };
-		CE7B4A142A9A599500562DAA /* RankingEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B4A132A9A599500562DAA /* RankingEditView.swift */; };
+		CE7B4A142A9A599500562DAA /* ClubEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B4A132A9A599500562DAA /* ClubEditView.swift */; };
 		CE7B4A162A9A658B00562DAA /* PlanningsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B4A152A9A658B00562DAA /* PlanningsViewModel.swift */; };
 		CE7B4A182A9A672900562DAA /* PlanningEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B4A172A9A672900562DAA /* PlanningEditView.swift */; };
 		CE7B4A1A2A9A693800562DAA /* PlanningRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B4A192A9A693800562DAA /* PlanningRowView.swift */; };
@@ -73,6 +74,7 @@
 		1195090B2B3718B000B35951 /* EventEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventEditView.swift; sourceTree = "<group>"; };
 		1198038B2B3C476300EBFF0C /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
 		11F0E4842B397FF6002B754C /* MatchCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCardView.swift; sourceTree = "<group>"; };
+		11F93BBA2B3D85AD00606847 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
 		CE4A40DD29B61E79009E2C70 /* RankingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingViewModel.swift; sourceTree = "<group>"; };
 		CE4A40E429B621B2009E2C70 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE67D6112A9CD24C00F024EF /* Auth0.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Auth0.plist; sourceTree = "<group>"; };
@@ -80,7 +82,7 @@
 		CE7B4A0D2A9A3FF400562DAA /* PlayerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetailView.swift; sourceTree = "<group>"; };
 		CE7B4A0F2A9A56A600562DAA /* RankingRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingRowView.swift; sourceTree = "<group>"; };
 		CE7B4A112A9A579900562DAA /* RankingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingsViewModel.swift; sourceTree = "<group>"; };
-		CE7B4A132A9A599500562DAA /* RankingEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingEditView.swift; sourceTree = "<group>"; };
+		CE7B4A132A9A599500562DAA /* ClubEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubEditView.swift; sourceTree = "<group>"; };
 		CE7B4A152A9A658B00562DAA /* PlanningsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningsViewModel.swift; sourceTree = "<group>"; };
 		CE7B4A172A9A672900562DAA /* PlanningEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningEditView.swift; sourceTree = "<group>"; };
 		CE7B4A192A9A693800562DAA /* PlanningRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningRowView.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				112195312B359CAC00D5253A /* SliderIndicatorView.swift */,
 				1173949F2B3B190A00218495 /* RankCardView.swift */,
 				117394A12B3B1E0900218495 /* RankListView.swift */,
+				11F93BBA2B3D85AD00606847 /* AddView.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -229,7 +232,7 @@
 				CEAE671C29ACDAF6001C4BFF /* RankingView.swift */,
 				CEBD6B2029B2219E00120448 /* RankingTitle.swift */,
 				CE7B4A0F2A9A56A600562DAA /* RankingRowView.swift */,
-				CE7B4A132A9A599500562DAA /* RankingEditView.swift */,
+				CE7B4A132A9A599500562DAA /* ClubEditView.swift */,
 			);
 			path = Ranking;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				CEF567192AAF3F74005D4ABC /* SwipeableView.swift in Sources */,
 				119509012B37105900B35951 /* EventListView.swift in Sources */,
 				119509042B3711F400B35951 /* Event.swift in Sources */,
+				11F93BBB2B3D85AD00606847 /* AddView.swift in Sources */,
 				112195322B359CAC00D5253A /* SliderIndicatorView.swift in Sources */,
 				CEAE670E29ACB329001C4BFF /* Player.swift in Sources */,
 				11F0E4852B397FF6002B754C /* MatchCardView.swift in Sources */,
@@ -399,7 +403,7 @@
 				CEAC87372A98F75900F7BBE3 /* PlanningViewModel.swift in Sources */,
 				119508FF2B37039D00B35951 /* MainView.swift in Sources */,
 				CEAE66FE29ACA5B1001C4BFF /* BasketApp.swift in Sources */,
-				CE7B4A142A9A599500562DAA /* RankingEditView.swift in Sources */,
+				CE7B4A142A9A599500562DAA /* ClubEditView.swift in Sources */,
 				112195302B3599A900D5253A /* ScoreCardView.swift in Sources */,
 				CEAC87352A98F70C00F7BBE3 /* PlayersViewModel.swift in Sources */,
 				CEAE672129ACE210001C4BFF /* Club.swift in Sources */,

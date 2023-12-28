@@ -15,7 +15,7 @@ struct SwipeableView: View {
                 .tabItem {
                     Label("", systemImage: "house.fill")
                 }
-            EventEditView()
+            AddView()
                 .tabItem {
                     Label("", systemImage: "plus")
                 }

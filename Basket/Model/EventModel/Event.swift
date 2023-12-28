@@ -10,7 +10,7 @@ import SwiftUI
 
 struct Event: Equatable, Codable, Identifiable {
     var id = UUID().uuidString
-    
+
     var title: String
     var description: String
     var info: String

@@ -22,25 +22,25 @@ struct MatchCardView: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 25.0)
-                .foregroundStyle(Color(.systemGray5))
+                .foregroundStyle(event.team1_name == "Montbrison" ? Color(.systemGray5) : .green)
                 .frame(width: UIScreen.main.bounds.width - 20, height: 200)
                 .shadow(radius: 8)
                 .clipShape(RoundedRectangle(cornerRadius: 25.0))
 
             Triangle()
-                .fill(.green)
+                .fill(event.team1_name == "Montbrison" ? .green : Color(.systemGray5))
                 .frame(width: 270, height: 200)
                 .offset(x: -UIScreen.main.bounds.width / 2 + 100, y: 0)
                 .clipped()
 
             Triangle()
-                .fill(.green)
-                .frame(width: 300, height: 200)
+                .fill(event.team1_name == "Montbrison" ? .green : Color(.systemGray5))
+                .frame(width: 270, height: 200)
                 .offset(x: -UIScreen.main.bounds.width / 2 + 75, y: 100)
                 .clipped()
 
             RoundedRectangle(cornerRadius: 25.0)
-                .foregroundStyle(.green)
+                .foregroundStyle(event.team1_name == "Montbrison" ? .green : Color(.systemGray5))
                 .frame(width: 90, height: 200)
                 .offset(x: -UIScreen.main.bounds.width / 2 + 55, y: 0)
             VStack {
@@ -95,11 +95,11 @@ struct Triangle: Shape {
     MatchCardView(event: Event(title: "",
                                description: "",
                                info: "",
-                               team1_name: "Montbrison",
-                               team2_name: "AL Neulise",
-                               team1_image: "https://firebasestorage.googleapis.com/v0/b/bcmf-d3d8a.appspot.com/o/logo-teams%2Fbcmf-modified.png?alt=media&token=0ca00941-e9fe-458d-90e4-0ef195432d59",
-                               team2_image: "https://firebasestorage.googleapis.com/v0/b/bcmf-d3d8a.appspot.com/o/logo-teams%2Fal-neulise.jpg?alt=media&token=7bb6663f-5263-48d4-9e88-21b78af83423",
-                               score: "123 - 123",
+                               team1_name: "AL Neulise",
+                               team2_name: "Montbrison",
+                               team1_image: "https://firebasestorage.googleapis.com/v0/b/bcmf-d3d8a.appspot.com/o/logo-teams%2Fal-neulise.jpg?alt=media&token=7bb6663f-5263-48d4-9e88-21b78af83423",
+                               team2_image: "https://firebasestorage.googleapis.com/v0/b/bcmf-d3d8a.appspot.com/o/logo-teams%2Fbcmf-modified.png?alt=media&token=0ca00941-e9fe-458d-90e4-0ef195432d59",
+                               score: "0 - 0",
                                date: Date(),
                                hour: Date(),
                                type: "match"))
