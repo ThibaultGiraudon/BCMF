@@ -2,23 +2,16 @@
 
 ### Description
 
-This is the BCMF (Basket Club Montbrison Feminin, Montbrison Women's Basketball Club) app, here you can find all the information about the club: 
+This is the BCMF (Basket Club Montbrison Feminin, Montbrison Women's Basketball Club) un official app, here you can find all the information about the club: 
 - players' name, size, total scored of the season...
 - all the match
 - the pool ranking
 
-I've created this app mainly has a challenge for the moment it is not planned to be published it on the Appstore.
-
 ### Features
 
 - Navigation between different views.
-- Fetching data from a database
-- Authentification
-
-### Improvements
-
-- Upload the image in the database from the app
-- Use a date picker when editing or adding match's dates
+- Store and fetch data with Firebase database
+- Store and fect image with Firebase storage
 
 ## Getting Started
 
@@ -27,7 +20,6 @@ I've created this app mainly has a challenge for the moment it is not planned to
 Before running the program, make sure you have the following:
 
 - Xcode installed on your macOS machine.
-- Basic knowledge of Swift and SwiftUI.
 
 ### Installation
 
@@ -55,10 +47,3 @@ Before running the program, make sure you have the following:
 ## License
 
 This SwiftUI program is open-source and available under the [MIT License](LICENSE). You are free to use, modify, and distribute the code as per the terms of the license.
-
-## Acknowledgments
-
-Special thanks to the Swift and SwiftUI communities for their contributions and support:
-- The PlayerListView and the PlayerDetailView inspiration come from this [Apple tutorial](https://developer.apple.com/tutorials/swiftui)
-- I've learned all the CRUD function thanks to [Peter Friese](https://peterfriese.dev/posts/swiftui-firebase-fetch-data/)
-- I've learned how to login and logout the app with Auth0 with [Joey deVilla](https://auth0.com/blog/get-started-ios-authentication-swift-swiftui-part-1-login-logout/)
