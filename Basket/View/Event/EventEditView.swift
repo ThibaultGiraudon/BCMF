@@ -9,32 +9,6 @@ import SwiftUI
 import SDWebImageSwiftUI
 import PhotosUI
 
-class PhotoSelectorViewModel: ObservableObject {
-    @Published var images = [UIImage]()
-    @Published var selectedPhotos = [PhotosPickerItem]()
-    @Published var isSelected = false
-    
-    @MainActor
-    func convertDataToImage() {
-        isSelected = false
-        images = []
-        if !selectedPhotos.isEmpty {
-            for eachItem in selectedPhotos {
-                Task {
-                    if let imageData = try? await eachItem.loadTransferable(type: Data.self) {
-                        if let image = UIImage(data: imageData) {
-                            images.append(image)
-                            isSelected = true
-                        }
-                    }
-                }
-            }
-        }
-        
-        selectedPhotos.removeAll()
-    }
-}
-
 struct EventEditView: View {
     @StateObject var viewModel: EventViewModel
     @Environment(\.dismiss)var dismiss

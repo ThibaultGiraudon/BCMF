@@ -69,52 +69,6 @@ struct EventListView: View {
                 }
             }
         }
-        .onAppear() {
-            viewModel.listenToItems()
-            checkCalendarAuthorization()
-        }
-    }
-    
-
-    private func checkCalendarAuthorization() {
-        switch EKEventStore.authorizationStatus(for: .event) {
-        case .authorized, .writeOnly:
-            isAuthorized = true
-        case .denied, .restricted, .notDetermined:
-            isAuthorized = false
-        case .fullAccess:
-            isAuthorized = true
-        @unknown default:
-            isAuthorized = false
-        }
-    }
-
-    private func requestCalendarAccess(_ event: Event) {
-        let eventStore = EKEventStore()
-
-        eventStore.requestWriteOnlyAccessToEvents() { (granted, error) in
-            if granted && error == nil {
-                isAuthorized = true
-                let calendarEvent = EKEvent(eventStore: eventStore)
-                calendarEvent.title = event.title
-                calendarEvent.startDate = event.date
-                calendarEvent.endDate = event.date.addingTimeInterval(3600)
-                calendarEvent.notes = event.description
-                calendarEvent.calendar = eventStore.defaultCalendarForNewEvents
-
-                do {
-                    try eventStore.save(calendarEvent, span: .thisEvent)
-                    print("Événement ajouté au calendrier avec succès.")
-                    added = true
-                } catch {
-                    print("Erreur lors de l'ajout de l'événement au calendrier: \(error.localizedDescription)")
-                }
-            } else {
-                isAuthorized = false
-                showAlert = true
-                print("L'accès au calendrier a été refusé.")
-            }
-        }
     }
 }
 
