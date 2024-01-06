@@ -45,7 +45,7 @@ struct MatchCardView: View {
                 .offset(x: -UIScreen.main.bounds.width / 2 + 55, y: 0)
             VStack {
                 Text(formattedDate)
-                Text(event.info)
+                Text(event.description)
                 HStack {
                     VStack {
                         WebImage(url: URL(string: event.team1_image))
@@ -54,8 +54,8 @@ struct MatchCardView: View {
                             .frame(width:100)
                         Text(event.team1_name)
                     }
-                    if event.score != "0 - 0" {
-                        Text(event.score)
+                    if event.team1_score != "0" || event.team2_score != "0" {
+                        Text("\(event.team1_score) - \(event.team2_score)")
                             .padding(.horizontal, 30)
                     }
                     else {
@@ -94,13 +94,17 @@ struct Triangle: Shape {
 #Preview {
     MatchCardView(event: Event(title: "",
                                description: "",
-                               info: "",
                                team1_name: "AL Neulise",
                                team2_name: "Montbrison",
                                team1_image: "https://firebasestorage.googleapis.com/v0/b/bcmf-d3d8a.appspot.com/o/logo-teams%2Fal-neulise.jpg?alt=media&token=7bb6663f-5263-48d4-9e88-21b78af83423",
                                team2_image: "https://firebasestorage.googleapis.com/v0/b/bcmf-d3d8a.appspot.com/o/logo-teams%2Fbcmf-modified.png?alt=media&token=0ca00941-e9fe-458d-90e4-0ef195432d59",
-                               score: "0 - 0",
+                               team1_score: "0",
+                               team2_score: "0",
+                               rank: "LFA",
+                               day: "1",
+                               group: "A",
                                date: Date(),
-                               hour: Date(),
-                               type: "match"))
+                               type: "match",
+                               images_id: [""],
+                               images: [""]))
 }

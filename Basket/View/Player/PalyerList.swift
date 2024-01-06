@@ -30,7 +30,7 @@ struct PlayerList: View {
         .listStyle(.inset)
         .onAppear() {
             print("PlayersListView appears. Subscribing to data updates.")
-            self.viewModel.subscribe()
+            viewModel.listenToItems()
         }
     }
 
@@ -42,18 +42,6 @@ struct PlayerList: View {
                 player.name.localizedCaseInsensitiveContains(searchText)
             }
         }
-    }
-}
-
-
-struct AddButton: View {
-    
-    var action: () -> Void
-    var body: some View {
-        Button(action: { self.action() }) {
-            Image(systemName: "plus")
-        }
-        .foregroundColor(.green)
     }
 }
 

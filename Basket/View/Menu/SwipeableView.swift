@@ -10,19 +10,21 @@ import SwiftUI
 struct SwipeableView: View {
     
     var body: some View {
-        TabView {
-            MainView()
-                .tabItem {
-                    Label("", systemImage: "house.fill")
-                }
-            AddView()
-                .tabItem {
-                    Label("", systemImage: "plus")
-                }
-            PlayerList()
-                .tabItem {
-                    Label("", systemImage: "figure.basketball")
-                        .foregroundStyle(.green)
+        ZStack {
+            TabView {
+                MainView()
+                    .tabItem {
+                        Label("", systemImage: "house.fill")
+                    }
+                AddView()
+                    .tabItem {
+                        Label("", systemImage: "plus")
+                    }
+                PlayerList()
+                    .tabItem {
+                        Label("", systemImage: "figure.basketball")
+                            .foregroundStyle(.green)
+                    }
             }
         }
     }

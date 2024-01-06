@@ -30,10 +30,12 @@ struct ClubEditView: View {
                     .keyboardType(.numberPad)
                 VStack {
                     if (vm.isSelected) {
-                        Image(uiImage: vm.photo)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 200)
+                        ForEach(vm.images, id: \.self) { image in
+                            Image(uiImage: image)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 200)
+                        }
                     }
                     PhotosPicker(
                         selection: $vm.selectedPhotos,
@@ -51,7 +53,9 @@ struct ClubEditView: View {
                     if (!viewModel.name.isEmpty && !viewModel.rank.isEmpty && !viewModel.win.isEmpty && !viewModel.loose.isEmpty){
                         Task {
                             do {
-                                await viewModel.uploadImage(vm.photo)
+                                for image in vm.images {
+                                    await viewModel.uploadImage(image)
+                                }
                                 try await viewModel.save()
                                 viewModel.clear()
                                 saveSuccess = true
@@ -112,7 +116,9 @@ struct ClubEditView: View {
                     Button("Sauvegarder") {
                         Task {
                             do {
-                                await viewModel.uploadImage(vm.photo)
+                                for image in vm.images {
+                                    await viewModel.uploadImage(image)
+                                }
                                 try await viewModel.save()
                                 dismiss()
                             } catch {

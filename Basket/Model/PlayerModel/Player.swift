@@ -9,24 +9,15 @@ import Foundation
 import FirebaseFirestoreSwift
 import SwiftUI
 
-struct Player: Hashable, Codable, Identifiable {
-    @DocumentID var id: String?
+struct Player: Equatable, Codable, Identifiable {
+    var id = UUID().uuidString
     var name: String
-    var number: Int
+    var number: String
     var size: String
     var total: String
-    var imageURL: String
     var post: String
     var description: String
-    
-    enum CodingKeys: String, CodingKey {
-        case id
-        case name
-        case number
-        case size
-        case total
-        case imageURL
-        case post
-        case description
-    }
+    var image_id: String
+    var image: String
+    var imageURL: String?
 }

@@ -10,15 +10,6 @@
       }
     },
     {
-      "identity" : "auth0.swift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/auth0/Auth0.swift",
-      "state" : {
-        "revision" : "9d970f3f5a694a146724e055c7932808a274d96e",
-        "version" : "2.5.0"
-      }
-    },
-    {
       "identity" : "firebase-ios-sdk",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/firebase-ios-sdk",
@@ -82,15 +73,6 @@
       }
     },
     {
-      "identity" : "jwtdecode.swift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/auth0/JWTDecode.swift.git",
-      "state" : {
-        "revision" : "58af7278797871e460d79496621b3e5366b865b2",
-        "version" : "3.1.0"
-      }
-    },
-    {
       "identity" : "leveldb",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/leveldb.git",
@@ -131,17 +113,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SDWebImage/SDWebImageSwiftUI.git",
       "state" : {
-        "revision" : "e837c37d45449fbd3b4745c10c5b5274e73edead",
-        "version" : "2.2.3"
-      }
-    },
-    {
-      "identity" : "simplekeychain",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/auth0/SimpleKeychain.git",
-      "state" : {
-        "revision" : "f082494aab8056139a4fe234c920a9f92f681aff",
-        "version" : "1.1.0"
+        "revision" : "261b6cec35686d2dc192b809ab50742b4502a73b",
+        "version" : "2.2.6"
       }
     },
     {

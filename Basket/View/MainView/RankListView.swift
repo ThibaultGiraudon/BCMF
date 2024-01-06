@@ -14,11 +14,11 @@ struct RankListView: View {
     
     var body: some View {
         TabView(selection: $currentIndex) {
-            ForEach(viewModel.clubs) { club in
+            ForEach(viewModel.clubs.indices, id: \.self) { index in
                 Button {
-                    formType = .edit(club)
+                    formType = .edit(viewModel.clubs[index])
                 } label: {
-                    RankCardView(club: club)
+                RankCardView(club: viewModel.clubs[index])
                 }
                 .foregroundStyle(.black)
             }
@@ -27,13 +27,13 @@ struct RankListView: View {
         .overlay(alignment: .bottom) {
             SliderIndicatorView(pageIndex: currentIndex, pageCount: viewModel.clubs.count)
         }
-        .onAppear {
-            self.viewModel.listenToItems()
-        }
         .sheet(item: $formType) { type in
             NavigationStack {
                 ClubEditView(viewModel: .init(formType: type))
             }
+        }
+        .onAppear {
+            self.viewModel.listenToItems()
         }
     }
 }

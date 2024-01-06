@@ -33,12 +33,11 @@ struct RankCardView: View {
                         .background(.white)
                         .ignoresSafeArea()
                 }
-                if let image = club.image {
-                    WebImage(url: URL(string: image))
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width:100)
-                }
+                let imageUrl = URL(string: club.image ?? "defaultImageURL")
+                WebImage(url: imageUrl)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 100)
                 Text(club.name)
                     .font(.system(size: 30))
                     .fontWeight(.bold)

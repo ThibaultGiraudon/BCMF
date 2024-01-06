@@ -6,36 +6,29 @@
 //
 
 import Foundation
+import SwiftUI
 import FirebaseFirestore
+import FirebaseStorage
 
 class PlayersViewModel: ObservableObject {
     @Published var players = [Player]()
-
-    private var db = Firestore.firestore()
-    private var listenerRegistration: ListenerRegistration?
     
-    deinit {
-        unsubscribe()
-    }
-    
-    func unsubscribe() {
-        if listenerRegistration != nil {
-            listenerRegistration?.remove()
-            listenerRegistration = nil
-        }
-    }
-    
-    func subscribe() {
-        if listenerRegistration == nil {
-            listenerRegistration = db.collection("players").order(by: "number").addSnapshotListener { (querySnapshot, error) in
-                guard let documents = querySnapshot?.documents else {
-                    print("No documents")
+    @MainActor
+    func listenToItems() {
+        Firestore.firestore().collection("players").order(by: "number")
+            .addSnapshotListener { snapshot, error in
+                guard let snapshot else {
+                    print("Error fetching snapshot: \(error?.localizedDescription ?? "error")")
                     return
                 }
-                self.players = documents.compactMap { queryDocumentSnapshot -> Player? in
-                    return try? queryDocumentSnapshot.data(as: Player.self)
+                let docs = snapshot.documents
+                let items = docs.compactMap {
+                    try? $0.data(as: Player.self)
+                }
+                
+                withAnimation {
+                    self.players = items
                 }
             }
-        }
     }
 }

@@ -13,19 +13,18 @@ struct Event: Equatable, Codable, Identifiable {
 
     var title: String
     var description: String
-    var info: String
     var team1_name: String
     var team2_name: String
     var team1_image: String
     var team2_image: String
-    var score: String
+    var team1_score: String
+    var team2_score: String
+    var rank: String
+    var day: String
+    var group: String
     var date: Date
-    var hour: Date
     var type: String
-    var image_id: String?
-    var image: String?
-    var imageURL: URL? {
-        guard let image else { return nil }
-        return URL(string: image)
-    }
+    var images_id: [String]
+    var images: [String]
+    var imageURLs: [String]?
 }

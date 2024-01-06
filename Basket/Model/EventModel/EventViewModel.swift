@@ -22,12 +22,17 @@ class EventViewModel: ObservableObject {
     @Published var team2_name = ""
     @Published var team1_image = ""
     @Published var team2_image = ""
-    @Published var score = ""
+    @Published var team1_score = ""
+    @Published var team2_score = ""
+    @Published var rank = "LFA"
+    @Published var day = "1"
+    @Published var group  = "A"
     @Published var description = ""
     @Published var date = Date.now
     @Published var hour = Date.now
-    @Published var image_id: String?
-    @Published var imageURL: URL?
+    @Published var images_id: [String] = []
+    @Published var images: [String] = []
+    @Published var imageURLs: [String]?
     
     @Published var uploadProgress: uploadProgress?
     @Published var error: String?
@@ -48,22 +53,23 @@ class EventViewModel: ObservableObject {
             id = UUID().uuidString
         case .edit(let item):
             id = item.id
-            type = item.type
             title = item.title
-            info = item.info
+            description = item.description
             team1_name = item.team1_name
             team2_name = item.team2_name
             team1_image = item.team1_image
             team2_image = item.team2_image
-            score = item.score
-            description = item.description
+            team1_score = item.team1_score
+            team2_score = item.team2_score
+            rank = item.rank
+            day = item.day
+            group = item.group
             date = item.date
-            hour = item.hour
-            if let image_id = item.image_id {
-                self.image_id = image_id
-            }
-            if let imageURL = item.imageURL {
-                self.imageURL = imageURL
+            type = item.type
+            images_id = item.images_id
+            images = item.images
+            if let imageURLs = item.imageURLs {
+                self.imageURLs = imageURLs
             }
         }
     }
@@ -76,35 +82,39 @@ class EventViewModel: ObservableObject {
         team2_name = ""
         team1_image = ""
         team2_image = ""
-        score = ""
+        team1_score = ""
+        team2_score = ""
         description = ""
         date = Date.now
         hour = Date.now
-        image_id = ""
-        imageURL = URL(string: "")
+        images_id = [""]
+        images = [""]
+        imageURLs = [""]
     }
     
     func save() async throws {
         var item: Event
         switch formType {
         case .add:
-            item = .init(title: title, description: description, info: info, team1_name: team1_name, team2_name: team2_name, team1_image: team1_image, team2_image: team2_image, score: score, date: date, hour: hour, type: type)
+            item = .init(title: title, description: description, team1_name: team1_name, team2_name: team2_name, team1_image: team1_image, team2_image: team2_image, team1_score: team1_score, team2_score: team2_score, rank: rank, day: day, group: group, date: date, type: type, images_id: images_id, images: images)
         case .edit(let event):
             item = event
             item.type = type
             item.title = title
-            item.info = info
             item.team1_name = team1_name
             item.team2_name = team2_name
             item.team1_image = team1_image
             item.team2_image = team2_image
-            item.score = score
+            item.team1_score = team1_score
+            item.team2_score = team2_score
+            item.rank = rank
+            item.day = day
+            item.group = group
             item.description = description
             item.date = date
-            item.hour = hour
+            item.images_id = images_id
+            item.images = images
         }
-        item.image = imageURL?.absoluteString
-        item.image_id = image_id
         
         do {
             try db.document("events/\(item.id)")
@@ -123,7 +133,7 @@ class EventViewModel: ObservableObject {
             let storageRef = storage.reference()
             let new_id = UUID().uuidString
             let imageRef = storageRef.child("events/\(new_id).jpg")
-            self.image_id = new_id
+            self.images_id.append(new_id)
             
             let metadata = StorageMetadata()
             metadata.contentType = "image/jpeg"
@@ -138,10 +148,21 @@ class EventViewModel: ObservableObject {
                        }
             let downloadURL = try await imageRef.downloadURL()
             
-            self.imageURL = downloadURL
-            print("Successfully download url \(self.imageURL?.absoluteString ?? "Fail")")
+            self.imageURLs?.append(downloadURL.absoluteString)
+            self.images.append(downloadURL.absoluteString)
         } catch {
             self.error = error.localizedDescription
+        }
+    }
+    
+    @MainActor
+    func deleteImages(_ images_id: [String]) async throws {
+        for image_id in images_id {
+            do {
+                try await Storage.storage().reference().child("events/\(image_id).jpg").delete()
+            } catch {
+                print("Erreur lors de la suppression de l'image \(image_id): \(error)")
+            }
         }
     }
     
@@ -149,9 +170,7 @@ class EventViewModel: ObservableObject {
     func deleteItem(_ event: Event) async throws {
         do {
             try await db.document("events/\(event.id)").delete()
-            if let image_id = event.image_id {
-                try? await Storage.storage().reference().child("events/\(image_id).jpg").delete()
-            }
+            try await deleteImages(event.images_id)
         } catch {
             throw error
         }

@@ -12,6 +12,7 @@ struct AddView: View {
         List {
             NavigationLink("Ajouter un evenement", destination: EventEditView())
             NavigationLink("Ajouter un club", destination: ClubEditView())
+            NavigationLink("Ajouter un joueur", destination: PlayerEditView())
         }
     }
 }

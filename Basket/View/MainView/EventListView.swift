@@ -99,7 +99,7 @@ struct EventListView: View {
                 calendarEvent.title = event.title
                 calendarEvent.startDate = event.date
                 calendarEvent.endDate = event.date.addingTimeInterval(3600)
-                calendarEvent.notes = event.info
+                calendarEvent.notes = event.description
                 calendarEvent.calendar = eventStore.defaultCalendarForNewEvents
 
                 do {

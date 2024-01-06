@@ -25,12 +25,16 @@ struct EventView: View {
                 MatchCardView(event: event)
             }
             else {
-                if let image = event.image {
-                    WebImage(url: URL(string: image))
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 300)
+                TabView {
+                    ForEach(event.images.indices, id: \.self) { index in
+                        WebImage(url: URL(string: event.images[index]))
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 300)
+                    }
                 }
+                .tabViewStyle(.page(indexDisplayMode: .never))
+                .frame(width: 300, height: 300)
             }
             Spacer()
         }
@@ -85,7 +89,7 @@ struct EventView: View {
                 calendarEvent.title = event.title
                 calendarEvent.startDate = event.date
                 calendarEvent.endDate = event.date.addingTimeInterval(3600)
-                calendarEvent.notes = event.info
+                calendarEvent.notes = event.description
                 calendarEvent.calendar = eventStore.defaultCalendarForNewEvents
 
                 do {
@@ -106,6 +110,20 @@ struct EventView: View {
 
 #Preview {
     List {
-        EventView(event: Event(title: "Montbrison VS Andrezieux", description: "", info: "", team1_name: "Montbrison", team2_name: "Andrezieux", team1_image: "https://firebasestorage.googleapis.com:443/v0/b/bcmf-d3d8a.appspot.com/o/logo-teams%2Fbcmf-modified.png?alt=media&token=0ca00941-e9fe-458d-90e4-0ef195432d59", team2_image: "https://firebasestorage.googleapis.com:443/v0/b/bcmf-d3d8a.appspot.com/o/logo-teams%2Flogo-abls.png?alt=media&token=cca3b0af-3adf-40ef-a330-02b7a8294469", score: "83 - 69", date: Date.now, hour: Date.now, type: "match"))
+        EventView(event: Event(title: "Montbrison VS Andrezieux", 
+                               description: "",
+                               team1_name: "Montbrison",
+                               team2_name: "Andrezieux",
+                               team1_image: "https://firebasestorage.googleapis.com:443/v0/b/bcmf-d3d8a.appspot.com/o/logo-teams%2Fbcmf-modified.png?alt=media&token=0ca00941-e9fe-458d-90e4-0ef195432d59",
+                               team2_image: "https://firebasestorage.googleapis.com:443/v0/b/bcmf-d3d8a.appspot.com/o/logo-teams%2Flogo-abls.png?alt=media&token=cca3b0af-3adf-40ef-a330-02b7a8294469",
+                               team1_score: "83",
+                               team2_score: "69",
+                               rank: "LFA",
+                               day: "1",
+                               group: "A",
+                               date: Date.now,
+                               type: "autre",
+                               images_id: [""],
+                               images: ["https://firebasestorage.googleapis.com:443/v0/b/bcmf-d3d8a.appspot.com/o/events%2FDD95ADAC-D99A-4B5A-B124-2D25B5595BA5.jpg?alt=media&token=25ac75ee-fdfa-4a4a-ad46-ae4c1c319fd3", "https://firebasestorage.googleapis.com:443/v0/b/bcmf-d3d8a.appspot.com/o/events%2FAFF0CD87-0DCE-4D6A-B913-2B83E9EAFA6A.jpg?alt=media&token=3d448e61-e623-4e84-8c34-43125243e3fc"]))
     }
 }

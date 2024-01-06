@@ -6,92 +6,151 @@
 //
 
 import SwiftUI
-
-enum Mode {
-    case new
-    case edit
-}
-
-enum Action {
-    case delete
-    case done
-    case cancel
-}
+import PhotosUI
+import SDWebImageSwiftUI
 
 struct PlayerEditView: View {
-    @Environment(\.presentationMode) private var presentationMode
-    @State var presentActionSheet = false
+    @StateObject var viewModel = PlayerViewModel()
+    @Environment(\.dismiss)var dismiss
     
-    @ObservedObject var viewModel = PlayerViewModel()
-    var mode: Mode = .new
-    var completionHandler: ((Result<Action, Error>) -> Void)?
-  
+    @StateObject var vm = PhotoSelectorViewModel()
+    @State private var showPhotoPicker = false
+    @State private var saveSuccess = false
+    @State private var showAlert = false
+    @State private var isConfirming = false
+    
     var body: some View {
-        NavigationView {
+        VStack {
             Form {
-              Section(header: Text("Player")) {
-                  TextField("Nom", text: $viewModel.player.name)
-                  TextField("Numero", value: $viewModel.player.number, formatter: NumberFormatter())
-                  TextField("Post", text: $viewModel.player.post)
-                  TextField("Taille", text: $viewModel.player.size)
-                  TextField("Total", text: $viewModel.player.total)
-                  TextField("Description", text: $viewModel.player.description)
-                  TextField("Image", text: $viewModel.player.imageURL)
-              }
-                
-                if mode == .edit {
-                  Section {
-                    Button("Delete player") { self.presentActionSheet.toggle() }
-                      .foregroundColor(.red)
-                  }
+                TextField("Nom", text: $viewModel.name)
+                TextField("Numero", text: $viewModel.number)
+                    .keyboardType(.numberPad)
+                TextField("Post", text: $viewModel.post)
+                    .keyboardType(.numberPad)
+                TextField("Taille", text: $viewModel.size)
+                TextField("Total de point marqué", text: $viewModel.total)
+                TextField("Description", text: $viewModel.description)
+                VStack {
+                    PhotosPicker(
+                        selection: $vm.selectedPhotos,
+                        maxSelectionCount: 1,
+                        selectionBehavior: .ordered,
+                        matching: .images
+                    ) {
+                        Text("Ajouter photo")
+                    }
+                    if (vm.isSelected) {
+                        ForEach(vm.images, id: \.self) { image in
+                            Image(uiImage: image)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 200)
+                        }
+                    }
+                    if (!viewModel.image.isEmpty) {
+                        Text("Photo publiée: ")
+                        WebImage(url: URL(string: viewModel.image))
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 200)
+                        Button("Effacer la selection") {
+                            Task {
+                                try await viewModel.deleteImages()
+                            }
+                        }
+                        .buttonStyle(.plain)
+                    }
                 }
             }
-            .navigationTitle(mode == .new ? "New player" : viewModel.player.name)
-            .navigationBarTitleDisplayMode(mode == .new ? .inline : .large)
-            .navigationBarItems(
-                leading:
-                    Button(action: { self.handleCancelTapped() }) {
-                        Text("Cancel")
-                    },
-                trailing:
-                    Button(action: { self.handleDoneTapped() }) {
-                        Text(mode == .new ? "Done" : "Save")
+            Spacer()
+            if case .add = viewModel.formType {
+                Button {
+                    if (!viewModel.name.isEmpty && !viewModel.number.isEmpty && vm.isSelected){
+                        Task {
+                            do {
+                                for image in vm.images {
+                                    await viewModel.uploadImage(image)
+                                }
+                                try await viewModel.save()
+                                viewModel.clear()
+                                saveSuccess = true
+                            } catch {
+                                print("An error occured")
+                            }
+                        }
                     }
-                    .disabled(!viewModel.modified)
-            )
-            .confirmationDialog("", isPresented: $presentActionSheet) {
-                Button(role: .destructive, action: { self.handleDeleteTapped() }) {
-                        Text("Delete Player")
+                    else {
+                        showAlert = true
                     }
-                    .foregroundColor(.red)
+                } label: {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 25)
+                            .frame(width: 250, height: 50)
+                            .foregroundStyle(.green)
+                        Text("Ajouter le joueur")
+                            .foregroundStyle(.white)
+                    }
+                }
+                .alert("Pensez a remplir tous les champs", isPresented: $showAlert) {
+                    Button("OK", role: .cancel) { }
+                }
+                .alert("Joueur ajouté avec succes", isPresented: $saveSuccess) {
+                    Button("OK", role: .cancel) { }
+                }
+            }
+            else {
+                Button("Delete", role: .destructive) {
+                    isConfirming = true
+               }
             }
         }
-    }
-    
-    func handleCancelTapped() {
-        dismiss()
-    }
-  
-    func handleDoneTapped() {
-        self.viewModel.handleDoneTapped()
-        dismiss()
-    }
-  
-    func handleDeleteTapped() {
-        viewModel.handleDeleteTapped()
-        self.dismiss()
-        self.completionHandler?(.success(.delete))
-    }
-    
-    func dismiss() {
-        self.presentationMode.wrappedValue.dismiss()
+        .confirmationDialog("Supprimer le joueur", isPresented: $isConfirming, titleVisibility: .visible) {
+            Button("Annuler", role: .cancel) {}
+            Button("Confirmer", role: .destructive) {
+                Task {
+                    do {
+                        try await viewModel.deleteItem()
+                        dismiss()
+                    } catch {
+                        viewModel.error = error.localizedDescription
+                    }
+                }
+            }
+        }
+        .onChange(of: vm.selectedPhotos) { _, _ in
+            vm.convertDataToImage()
+        }
+        .toolbar {
+            if case .edit = viewModel.formType {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Annuler") {
+                        dismiss()
+                    }
+                }
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Sauvegarder") {
+                        Task {
+                            do {
+                                for image in vm.images {
+                                    await viewModel.uploadImage(image)
+                                }
+                                try await viewModel.save()
+                                dismiss()
+                            } catch {
+                                print("An error occured")
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
 struct BookEditView_Previews: PreviewProvider {
     static var previews: some View {
-        let player = Player(name: "", number: 12, size: "", total: "", imageURL: "", post: "", description: "")
-        let playerViewModel = PlayerViewModel(player: player)
-        return PlayerEditView(viewModel: playerViewModel)
+        NavigationStack {
+            return PlayerEditView()
+        }
     }
 }

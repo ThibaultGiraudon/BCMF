@@ -12,11 +12,9 @@ import SDWebImageSwiftUI
 
 struct PlayerImage: View {
     var image: String
-    @State private var path: String = "player_images/"
-    @State private var imageURL: URL?
     
     var body: some View {
-        WebImage(url: imageURL)
+        WebImage(url: URL(string: image))
             .resizable()
             .frame(width: 271, height: 384)
             .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
@@ -24,23 +22,11 @@ struct PlayerImage: View {
                 Circle().stroke(.white, lineWidth: 4)
             }
             .shadow(radius: 7)
-            .onAppear {
-                let storage = Storage.storage()
-
-                let storageRef = storage.reference().child(path + image)
-                storageRef.downloadURL { (url, error) in
-                    if let url = url {
-                        self.imageURL = url
-                    } else {
-                        print("Erreur lors du téléchargement de l'URL de l'image: \(error?.localizedDescription ?? "Erreur inconnue")")
-                    }
-                }
-            }
     }
 }
 
 struct PlayerImage_Previews: PreviewProvider {
     static var previews: some View {
-        PlayerImage(image: "Emma_Gailhot.jpg")
+        PlayerImage(image: "https://firebasestorage.googleapis.com/v0/b/bcmf-d3d8a.appspot.com/o/player_images%2FEmma_Gailhot.jpg?alt=media&token=81b7eb90-17d2-4d27-a089-9ac9539f889f")
     }
 }

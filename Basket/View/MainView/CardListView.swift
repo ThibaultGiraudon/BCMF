@@ -12,18 +12,14 @@ struct CardListView: View {
     @State private var currentIndex: Int = 0
 
     private var filteredEvents: [Event] {
-        return viewModel.events.filter { $0.score != "0 - 0" }
+        return viewModel.events.filter { $0.team1_score != "0" }
     }
     
     var body: some View {
         TabView(selection: $currentIndex) {
             ForEach(filteredEvents.indices, id: \.self) { index in
-                NavigationLink {
-//                    PlanningEditView(viewModel: PlanningViewModel(planning: filteredEvents[index]), mode: .edit)
-                } label: {
                     MatchCardView(event: filteredEvents[index])
                         .foregroundStyle(.black)
-                }
             }
         }
         .tabViewStyle(.page(indexDisplayMode: .never))

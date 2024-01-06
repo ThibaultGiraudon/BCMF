@@ -10,7 +10,7 @@ import Firebase
 
 struct ContentView: View {
     var body: some View {
-        NavigationView {
+        NavigationStack {
             SwipeableView()
         }
     }
