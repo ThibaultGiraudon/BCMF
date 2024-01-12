@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PlayerDetailView: View {
     @Environment(\.dismiss) var dismiss
-    @State var presentEditPlayerSheet = false
+//    @State var presentEditPlayerSheet = false
     @State var formType: PlayerFormType?
     var player: Player
     
@@ -54,7 +54,7 @@ struct PlayerDetailView: View {
         .navigationBarItems(trailing:
             Button {
                 formType = .edit(player)
-                presentEditPlayerSheet = true
+//                presentEditPlayerSheet = true
             } label: {
                 Text("Edit")
             }

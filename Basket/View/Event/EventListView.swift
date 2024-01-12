@@ -69,6 +69,9 @@ struct EventListView: View {
                 }
             }
         }
+        .onAppear {
+            viewModel.listenToItems()
+        }
     }
 }
 
