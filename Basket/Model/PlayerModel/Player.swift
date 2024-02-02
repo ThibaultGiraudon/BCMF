@@ -12,7 +12,7 @@ import SwiftUI
 struct Player: Equatable, Codable, Identifiable {
     var id = UUID().uuidString
     var name: String
-    var number: String
+    var number: Int
     var size: String
     var total: String
     var post: String

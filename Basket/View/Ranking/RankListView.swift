@@ -18,7 +18,7 @@ struct RankListView: View {
                 Button {
                     formType = .edit(viewModel.clubs[index])
                 } label: {
-                RankCardView(club: viewModel.clubs[index])
+                    RankCardView(club: viewModel.clubs[index])
                 }
                 .foregroundStyle(.black)
             }

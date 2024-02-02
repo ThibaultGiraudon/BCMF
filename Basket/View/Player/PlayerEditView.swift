@@ -23,7 +23,7 @@ struct PlayerEditView: View {
         VStack {
             Form {
                 TextField("Nom", text: $viewModel.name)
-                TextField("Numero", text: $viewModel.number)
+                TextField("Enter your score", value: $viewModel.number, format: .number)
                     .keyboardType(.numberPad)
                 TextField("Post", text: $viewModel.post)
                     .keyboardType(.numberPad)
@@ -65,7 +65,7 @@ struct PlayerEditView: View {
             Spacer()
             if case .add = viewModel.formType {
                 Button {
-                    if (!viewModel.name.isEmpty && !viewModel.number.isEmpty && vm.isSelected){
+                    if (!viewModel.name.isEmpty && vm.isSelected){
                         Task {
                             do {
                                 for image in vm.images {
@@ -144,6 +144,17 @@ struct PlayerEditView: View {
                 }
             }
         }
+    }
+}
+
+extension UINavigationController: UIGestureRecognizerDelegate {
+    open override func viewDidLoad() {
+        super.viewDidLoad()
+        interactivePopGestureRecognizer?.delegate = self
+    }
+    
+    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return viewControllers.count > 1
     }
 }
 

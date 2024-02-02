@@ -16,7 +16,7 @@ class PlayerViewModel: ObservableObject {
     
     let id: String
     @Published var name = ""
-    @Published var number = ""
+    @Published var number: Int?
     @Published var size = ""
     @Published var total = ""
     @Published var post = ""
@@ -36,6 +36,11 @@ class PlayerViewModel: ObservableObject {
         case .edit(let item):
             id = item.id
             name = item.name
+            number = item.number
+            size = item.size
+            total = item.total
+            post = item.post
+            description = item.description
             image_id = item.image_id
             image = item.image
             if let imageURL = item.imageURL {
@@ -46,7 +51,6 @@ class PlayerViewModel: ObservableObject {
     
     func clear() {
         name = ""
-        number = ""
         size = ""
         total = ""
         post = ""
@@ -59,7 +63,7 @@ class PlayerViewModel: ObservableObject {
         var item: Player
         switch formType {
         case .add:
-            item = .init(name: name, number: number, size: size, total: total, post: post, description: description, image_id: image_id, image: image)
+            item = .init(name: name, number: number ?? 0, size: size, total: total, post: post, description: description, image_id: image_id, image: image)
         case .edit(let player):
             item = player
             item.name = name
