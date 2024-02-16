@@ -11,7 +11,7 @@ This is the BCMF (Basket Club Montbrison Feminin, Montbrison Women's Basketball 
 
 - Navigation between different views.
 - Store and fetch data with Firebase database
-- Store and fect image with Firebase storage
+- Store and fecth images with Firebase storage
 
 ## Getting Started
 
