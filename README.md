@@ -2,7 +2,7 @@
 
 ### Description
 
-This is the BCMF (Basket Club Montbrison Feminin, Montbrison Women's Basketball Club) un official app, here you can find all the information about the club: 
+This is the BCMF (Basket Club Montbrison Feminin, Montbrison Women's Basketball Club) unofficial app, here you can find all the information about the club: 
 - players' name, size, total scored of the season...
 - all the match
 - the pool ranking
